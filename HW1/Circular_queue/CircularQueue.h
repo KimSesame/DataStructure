@@ -14,10 +14,10 @@ public:
     CircularQueue(int capacity);
     ~CircularQueue() { delete[] queue; }
     bool IsEmpty() const;
-    void Print() const;
+    void Print() const; // need modification case of queue expansion
     T &Front() const;
     T &Rear() const;
-    void Push(const T &item);
+    void Push(const T &item);   // need modification case of queue expansion
     T &Pop();
 };
 
