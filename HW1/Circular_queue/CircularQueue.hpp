@@ -1,13 +1,11 @@
 #include "CircularQueue.h"
 
 template <typename T>
-CircularQueue<T>::CircularQueue(int capacity) : capacity(capacity)
+CircularQueue<T>::CircularQueue(int capacity) : capacity(capacity), front(0), rear(0), size(0)
 {
     if (capacity <= 1)
         throw "Queue capacity must be > 1";
     queue = new T[capacity];
-    front = 0;
-    rear = 0;
 }
 
 template <typename T>
@@ -35,7 +33,11 @@ inline T &CircularQueue<T>::Rear() const
 template <typename T>
 void CircularQueue<T>::Print() const
 {
-    for (int i = front + 1; i <= rear; i++)
+    for (int i = front + 1; i <= front + size; i++)
+        cout << queue[i % capacity] << " ";
+    cout << endl;
+    // test
+    for (int i = 0; i < capacity; i++)
         cout << queue[i] << " ";
     cout << endl;
 }
@@ -48,10 +50,28 @@ void CircularQueue<T>::Push(const T &item)
     if (rear == front) // queue is FULL
     {
         ChangeSize1D(queue, capacity, 2 * capacity);
+
+        for (int i = capacity - std::max(front, rear); i > 0; i--)
+            queue[2 * capacity - i] = queue[capacity - i];
+
+        if (front == 0)
+        {
+            queue[rear + capacity] = item;
+            rear = 2 * capacity - (capacity - rear);
+        }
+        else
+        {
+            front = 2 * capacity - (capacity - front);
+            queue[rear] = item;
+        }
         capacity *= 2;
+        size++;
+
+        return;
     }
 
     queue[rear] = item;
+    size++;
 
     return;
 }
@@ -67,6 +87,7 @@ T &CircularQueue<T>::Pop()
     front = (front + 1) % capacity; // move clockwise
     target = queue[front];          // save data in target
     queue[front].~T();              // delete
+    size--;
 
     return target;
 }
