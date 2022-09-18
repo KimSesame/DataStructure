@@ -1,6 +1,9 @@
 #ifndef __CIRCULAR_QUEUE_H__
 #define __CIRCULAR_QUEUE_H__
 
+#include <iostream>
+#include <algorithm>
+using namespace std;
 template <typename T>
 class CircularQueue
 {

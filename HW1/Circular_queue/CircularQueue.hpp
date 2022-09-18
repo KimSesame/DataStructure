@@ -1,7 +1,4 @@
-#include <iostream>
-#include <algorithm>
 #include "CircularQueue.h"
-using namespace std;
 
 template <typename T>
 CircularQueue<T>::CircularQueue(int capacity) : capacity(capacity)
