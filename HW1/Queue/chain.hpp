@@ -35,51 +35,62 @@ bool Chain<T>::IsEmpty(void) const
 }
 
 template <typename T>
-ChainNode<T> *Chain<T>::Search(const T &data) const
+void Chain<T>::Print(void) const
 {
     ChainNode<T> *cur_node = head;
 
-    while (cur_node->data != data)
+    cout << "Print: ";
+    while (cur_node)
+    {
+        cout << cur_node->data << " ";
         cur_node = cur_node->next;
-
-    return cur_node;
+    }
+    cout << endl;
 }
 
 template <typename T>
-void Chain<T>::Append(const T &data)
+void Chain<T>::StackPush(const T &data)
 {
-    ChainNode<T> *new_node = new ChainNode(data);
-
-    if (head == nullptr)
-    {
-        head = new_node;
-        tail = new_node;
-        return;
-    }
-
-    tail->next = new_node;
-    tail = new_node;
+    head = new ChainNode<T>(data, head);
+    cout << "StackPush: " << data << endl;
 }
 
 template <typename T>
-void Chain<T>::Delete(const T &data)
+void Chain<T>::StackPop(void)
 {
-    ChainNode<T> *del_node = Search(data);
-    ChainNode<T> *cur_node = head;
+    ChainNode<T> *top = head;
 
-    if (del_node == nullptr)
-        return;
-
-    if (del_node == head)
+    if (IsEmpty())
+        cout << "StackPop: EMPTY!" << endl;
+    else
     {
-        head = head->next;
-        delete del_node;
-        return;
+        cout << "StackPop: " << top->data << endl;
+        head = top->next;
+        delete top;
     }
+}
 
-    while (cur_node->next == del_node)
-        cur_node = cur_node->next;
+template <class T>
+void Chain<T>::QueuePush(const T &data)
+{
+    if (IsEmpty())
+        head = tail = new ChainNode<T>(data);
+    else
+        tail = tail->next = new ChainNode<T>(data);
+    cout << "QueuePush: " << data << endl;
+}
 
-    cur_node->next = cur_node->next->next;
-    delete del_node;
+template <class T>
+void Chain<T>::QueuePop()
+{
+    ChainNode<T> *front = head;
+
+    if (IsEmpty())
+        cout << "QueuePop: EMPTY!" << endl;
+    else
+    {
+        cout << "QueuePop: " << front->data << endl;
+        head = front->next;
+        delete front;
+    }
 }

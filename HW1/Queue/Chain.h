@@ -19,6 +19,7 @@ private:
 
 public:
     ChainNode(const T data, ChainNode<T> *next = nullptr);
+    T &GetData() const { return data; }
 };
 
 template <typename T>
@@ -32,10 +33,11 @@ public:
     Chain();
     virtual ~Chain();
     bool IsEmpty(void) const;
-    ChainNode<T>* Search(const T& data) const;
-    void Append(const T& data);
-    void Delete(const T& data);
-    //void Print(void) const;
+    void StackPush(const T& data);
+    void StackPop(void);
+    void QueuePush(const T& data);
+    void QueuePop(void);
+    void Print(void) const;
 };
 
 #include "chain.hpp"
