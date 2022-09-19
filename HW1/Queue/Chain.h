@@ -14,7 +14,6 @@ private:
     T data;
     ChainNode<T> *next;
 
-    template <typename T>
     friend class Chain;
 
 public:
@@ -25,7 +24,7 @@ public:
 template <typename T>
 class Chain
 {
-private:
+protected:
     ChainNode<T> *head;
     ChainNode<T> *tail;
 
