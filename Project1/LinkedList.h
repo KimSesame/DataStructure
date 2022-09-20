@@ -14,8 +14,8 @@ public:
     LinkedList(std::string dir = "img_files") { dir_node = new ListNode(dir); }
     //~LinkedList();
 
-    //void insert();
-    //void deletion();
+    // void insert();
+    // void deletion();
 
     friend std::ostream &operator<<(std::ostream &os, const LinkedList &list)
     {
@@ -25,15 +25,15 @@ public:
         cur_dir = list.dir_node;
         while (cur_dir)
         {
-            os << cur_dir;
-
+            os << *cur_dir;
+            // os << "In LinkedList operator<< !" << std::endl; // test
             cur_img = cur_dir->getNextImg();
             while (cur_img)
             {
-                os << cur_img;
+                os << *cur_img;
                 cur_img = cur_img->getNextImg();
             }
-
+            os << std::endl;
             cur_dir = cur_dir->getNextDir();
         }
         return os;

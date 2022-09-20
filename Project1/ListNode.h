@@ -22,7 +22,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const ListNode &node)
     {
-        if (node.name.compare(NULL))                      // dir_node
+        if (node.unique_number == -1)                      // dir_node
             os << "[" << node.dirname << "] ";            // Debug with print
         else                                              // img_node
             os << "(node.m_name: " << node.name << "), "; // Debug with print

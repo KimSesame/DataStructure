@@ -1,10 +1,11 @@
 #include <iostream>
-#include "ListManager.h"
+#include "Manager.h"
 using namespace std;
 
 int main(void)
 {
-    ListManager list_manager;
+    Manager manager;
 
-    list_manager.load();
+    manager.LOAD();
+    manager.CHECK_list();
 }

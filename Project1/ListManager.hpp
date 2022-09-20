@@ -8,31 +8,28 @@ void ListManager::load()
     std::string unique_number;
     std::string image_title;
 
-    std::fstream csv("C:\\Users\\kimbs\\Documents\\repo\\Assignments\\DataStructure\\Project1\\img_files\\filesnumbers.csv", std::ios::in); // Open the csv file
+    std::fstream csv("Project1\\img_files\\filesnumbers.csv", std::ios::in); // Open the csv file
+    csv.seekp(3, std::ios::beg);                                             // Skip the BOM
 
     cur_node = list.dir_node;
 
-    if (csv.is_open())
+    while (!csv.eof())
     {
-        std::cout << std::string("I'm in file!") << std::endl; // test
-        while (!csv.eof())
-        {
-            // Extract data from csv file
-            std::getline(csv, unique_number, ',');
-            std::getline(csv, image_title, ',');
-            image_title.substr(0, image_title.find(".RAW"));
+        // Extract data from csv file
+        std::getline(csv, unique_number, ',');
+        std::getline(csv, image_title, '\n');
+        image_title = image_title.substr(0, image_title.find(".RAW"));
 
-            std::cout << unique_number << ": " << image_title << std::endl; // test
+        // std::cout << unique_number << ": " << image_title << std::endl; // test
+        //static int i = 0;              // test
+        //std::cout << ++i << std::endl; // test
 
-            // Move data to linked list
-            cur_node->next_img = new ListNode("img_files", image_title, atoi(unique_number.c_str()));
+        // Move data to linked list
+        cur_node->next_img = new ListNode("img_files", image_title, atoi(unique_number.c_str()));
 
-            cur_node = cur_node->next_img;
-        }
-        csv.close();
+        cur_node = cur_node->next_img;
     }
-    else
-        std::cout << "File Open Fail" << std::endl; // test
+    csv.close();
 
     return;
 }
