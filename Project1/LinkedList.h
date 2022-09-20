@@ -12,7 +12,7 @@ private:
 
 public:
     LinkedList(std::string dir = "img_files") { dir_node = new ListNode(dir); }
-    ~LinkedList();
+    //~LinkedList();
 
     //void insert();
     //void deletion();

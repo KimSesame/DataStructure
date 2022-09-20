@@ -13,12 +13,12 @@ private:
     ListNode *next_img;
 
 public:
-    ListNode(std::string dir, std::string name = NULL, int number = NULL)
+    ListNode(std::string dir, std::string name = "\0", int number = -1)
         : ImageNode(dir, name, number), next_dir(nullptr), next_img(nullptr) {}
     ~ListNode() {}
 
-    ListNode *getNextDir() const { return next_dir; }
-    ListNode *getNextImg() const { return next_img; }
+    ListNode *getNextDir() { return next_dir; }
+    ListNode *getNextImg() { return next_img; }
 
     friend std::ostream &operator<<(std::ostream &os, const ListNode &node)
     {
