@@ -3,18 +3,21 @@
 #include "ListNode.h"
 #include <iostream>
 
+#define LIST_MAX 100
 class LinkedList
 {
     friend class ListManager;
 
 private:
     ListNode *dir_node;
+    int size;
 
 public:
-    LinkedList(std::string dir = "img_files") { dir_node = new ListNode(dir); }
-    //~LinkedList();
+    LinkedList() : dir_node(nullptr), size(0) {}
+    // ~LinkedList();
 
-    // void insert();
+    inline int getSize() const { return size; }
+    void insert(std::string dir_name, std::string file_name = "\0", int unique = -1);
     // void deletion();
 
     friend std::ostream &operator<<(std::ostream &os, const LinkedList &list)
@@ -26,7 +29,6 @@ public:
         while (cur_dir)
         {
             os << *cur_dir;
-            // os << "In LinkedList operator<< !" << std::endl; // test
             cur_img = cur_dir->getNextImg();
             while (cur_img)
             {
@@ -39,3 +41,5 @@ public:
         return os;
     }
 };
+
+#include "LinkedList.hpp"

@@ -22,10 +22,10 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const ListNode &node)
     {
-        if (node.unique_number == -1)                      // dir_node
-            os << "[" << node.dirname << "] ";            // Debug with print
-        else                                              // img_node
-            os << "(node.m_name: " << node.name << "), "; // Debug with print
+        if (node.unique_number == -1)                       // dir_node
+            os << "[" << node.dirname << "] " << std::endl; // Debug with print
+        else                                                // img_node
+            os << "(node.m_name: " << node.name << "), ";   // Debug with print
 
         return os;
     }

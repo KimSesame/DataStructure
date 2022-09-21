@@ -13,7 +13,12 @@ public:
 
     // std::string& getCommand();
     // void runCommand(std::string command);
-    void checkList() const { list_manager.check_list(); }
+    // test
+    void checkList() const
+    {
+        list_manager.check_list();
+        std::cout << "list size: " << list_manager.list.getSize() << std::endl;
+    }
 };
 
 #include "Manager.hpp"

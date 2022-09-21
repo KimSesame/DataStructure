@@ -12,10 +12,9 @@ void ListManager::load() // TODO: Loaded_List MAX size 100
     std::fstream csv("Project1\\img_files\\filesnumbers.csv", std::ios::in); // Open the csv file
     csv.seekp(3, std::ios::beg);                                             // Skip the BOM
 
-    cur_node = list.dir_node;
-
     if (csv.is_open())
     {
+        list.insert("img_files");
         std::cout << "========LOAD========" << std::endl;
         while (std::getline(csv, unique_number, ',')) // EOF if cannot extract unqiue_number
         {
@@ -23,17 +22,11 @@ void ListManager::load() // TODO: Loaded_List MAX size 100
             std::getline(csv, image_title, '\n');
             image_title = image_title.substr(0, image_title.find(".RAW"));
 
-            // last line is blank (NOT data)
-            if (!unique_number.compare("\n"))
-                break;
-
             // Print data
             std::cout << image_title << "/" << unique_number << std::endl;
 
-            // Move data to linked list
-            cur_node->next_img = new ListNode("img_files", image_title, atoi(unique_number.c_str()));
-
-            cur_node = cur_node->next_img;
+            // Insert data to linked list
+            list.insert("img_files", image_title, atoi(unique_number.c_str()));
         }
         csv.close();
     }
@@ -49,5 +42,4 @@ void ListManager::load() // TODO: Loaded_List MAX size 100
 
 void ListManager::add(std::string dir_name, std::string file_name) // TODO: Loaded_List MAX size 100
 {
-    
 }
