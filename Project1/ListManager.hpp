@@ -2,7 +2,7 @@
 #include "Error.h"
 #include <fstream>
 
-void ListManager::load()
+void ListManager::load() // TODO: Loaded_List MAX size 100
 {
     ListNode *cur_node;
 
@@ -17,7 +17,7 @@ void ListManager::load()
     if (csv.is_open())
     {
         std::cout << "========LOAD========" << std::endl;
-        while (std::getline(csv, unique_number, ','))   // EOF if cannot extract unqiue_number
+        while (std::getline(csv, unique_number, ',')) // EOF if cannot extract unqiue_number
         {
             // Extract data from csv file
             std::getline(csv, image_title, '\n');
@@ -45,4 +45,9 @@ void ListManager::load()
     std::cout << "====================" << std::endl;
 
     return;
+}
+
+void ListManager::add(std::string dir_name, std::string file_name) // TODO: Loaded_List MAX size 100
+{
+    
 }

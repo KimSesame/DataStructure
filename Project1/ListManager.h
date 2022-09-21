@@ -14,7 +14,7 @@ public:
     ~ListManager() {}
 
     void load();
-    // void add();
+    void add(std::string dir_name, std::string file_name);
     void check_list() const { std::cout << list; } // test
 };
 

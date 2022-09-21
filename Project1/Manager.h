@@ -9,6 +9,7 @@ private:
 
 public:
     void LOAD() { list_manager.load(); }
+    void ADD();
 
     // std::string& getCommand();
     // void runCommand(std::string command);
