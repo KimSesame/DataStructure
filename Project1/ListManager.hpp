@@ -1,4 +1,5 @@
 #include "ListManager.h"
+#include "Error.h"
 #include <fstream>
 
 void ListManager::load()
@@ -13,23 +14,35 @@ void ListManager::load()
 
     cur_node = list.dir_node;
 
-    while (!csv.eof())
+    if (csv.is_open())
     {
-        // Extract data from csv file
-        std::getline(csv, unique_number, ',');
-        std::getline(csv, image_title, '\n');
-        image_title = image_title.substr(0, image_title.find(".RAW"));
+        std::cout << "========LOAD========" << std::endl;
+        while (std::getline(csv, unique_number, ','))   // EOF if cannot extract unqiue_number
+        {
+            // Extract data from csv file
+            std::getline(csv, image_title, '\n');
+            image_title = image_title.substr(0, image_title.find(".RAW"));
 
-        // std::cout << unique_number << ": " << image_title << std::endl; // test
-        //static int i = 0;              // test
-        //std::cout << ++i << std::endl; // test
+            // last line is blank (NOT data)
+            if (!unique_number.compare("\n"))
+                break;
 
-        // Move data to linked list
-        cur_node->next_img = new ListNode("img_files", image_title, atoi(unique_number.c_str()));
+            // Print data
+            std::cout << image_title << "/" << unique_number << std::endl;
 
-        cur_node = cur_node->next_img;
+            // Move data to linked list
+            cur_node->next_img = new ListNode("img_files", image_title, atoi(unique_number.c_str()));
+
+            cur_node = cur_node->next_img;
+        }
+        csv.close();
     }
-    csv.close();
+    else
+    {
+        std::cout << "========ERROR=======" << std::endl;
+        std::cout << ErrorCode::LOAD_ERR << std::endl;
+    }
+    std::cout << "====================" << std::endl;
 
     return;
 }

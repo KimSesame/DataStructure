@@ -7,5 +7,5 @@ int main(void)
     Manager manager;
 
     manager.LOAD();
-    manager.CHECK_list();
+    manager.checkList();
 }
