@@ -1,6 +1,8 @@
 #pragma once
 
-enum ErrorCode
+#include <iostream>
+
+typedef enum _ErrorCode
 {
     LOAD_ERR = 100,
     ADD_ERR = 200,
@@ -11,4 +13,15 @@ enum ErrorCode
     SELECT_ERR = 700,
     EDIT_ERR = 800,
     UNDEFINED_ERR = 777
-};
+} ErrorCode;
+
+void print_error(ErrorCode code);
+
+void print_error(ErrorCode code)
+{
+    std::cout << "========ERROR=======" << std::endl;
+    std::cout << code << std::endl;
+    std::cout << "====================" << std::endl;
+
+    return;
+}

@@ -1,13 +1,24 @@
 #include "Manager.h"
+#include "Error.h"
 #include <iostream>
 
 void Manager::ADD()
 {
+    std::string param;
     std::string dir_name;
     std::string file_name;
 
-    std::cin >> dir_name >> file_name;
-    list_manager.add(dir_name, file_name);
+    std::cin.clear();
+    getline(std::cin, param, '\n');
+    param.erase(0, 1); // erase ' ' at front
+    dir_name = param.substr(0, param.find_first_of(' '));
+    param.erase(0, dir_name.size() + 1);
+    file_name = param.substr(0, param.find_last_of(param.back()) + 1);
+
+    if(file_name.empty() || dir_name.empty())
+        print_error(ErrorCode::ADD_ERR);
+    else
+        list_manager.add(dir_name, file_name);
 
     return;
 }

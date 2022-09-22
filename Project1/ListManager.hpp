@@ -2,7 +2,7 @@
 #include "Error.h"
 #include <fstream>
 
-void ListManager::load() // TODO: Loaded_List MAX size 100
+void ListManager::load()
 {
     ListNode *cur_node;
 
@@ -28,18 +28,16 @@ void ListManager::load() // TODO: Loaded_List MAX size 100
             // Insert data to linked list
             list.insert("img_files", image_title, atoi(unique_number.c_str()));
         }
+        std::cout << "====================" << std::endl;
         csv.close();
     }
     else
-    {
-        std::cout << "========ERROR=======" << std::endl;
-        std::cout << ErrorCode::LOAD_ERR << std::endl;
-    }
-    std::cout << "====================" << std::endl;
+        print_error(ErrorCode::LOAD_ERR);
 
     return;
 }
 
-void ListManager::add(std::string dir_name, std::string file_name) // TODO: Loaded_List MAX size 100
+void ListManager::add(std::string dir_name, std::string file_name)
 {
+    std::cout << "I'm in add!\n"; // test
 }
