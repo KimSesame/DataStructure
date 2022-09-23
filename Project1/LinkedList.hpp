@@ -3,7 +3,8 @@
 void LinkedList::insert(std::string dir_name, std::string file_name, int unique)
 {
     ListNode *new_node = new ListNode(dir_name, file_name, unique);
-    ListNode *cur_node = nullptr;
+    ListNode *cur_dir = nullptr;
+    ListNode *cur_img = nullptr;
 
     // EMPTY case
     if (this->dir_node == nullptr)
@@ -13,11 +14,29 @@ void LinkedList::insert(std::string dir_name, std::string file_name, int unique)
         return;
     }
 
-    // Find tail & insert
-    cur_node = dir_node;
-    while (cur_node->next_img)
-        cur_node = cur_node->next_img;
-    cur_node->next_img = new_node;
+    // Inspect the list size
+    cur_dir = dir_node;
+    if (size >= LIST_MAX)
+    {
+        while (cur_dir)
+        {
+            cur_img = cur_dir->next_img;
+            if (cur_img)
+                deletion(cur_img->unique_number); // delete front data
+            cur_dir = cur_dir->next_dir;
+        }
+    }
+
+    // Find insert location
+    cur_dir = dir_node;
+    while (cur_dir->next_dir)
+        cur_dir = cur_dir->next_dir;
+    cur_img = cur_dir;
+    while (cur_img->next_img)
+        cur_img = cur_img->next_img;
+
+    // Insert
+    cur_img->next_img = new_node;
     size++;
 
     return;
@@ -54,6 +73,7 @@ void LinkedList::deletion(int unique)
     // Delete
     del_prev_node->next_img = del_node->next_img;
     delete del_node;
+    size--;
 
     return;
 }
