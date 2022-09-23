@@ -22,7 +22,10 @@ void LinkedList::insert(std::string dir_name, std::string file_name, int unique)
         {
             cur_img = cur_dir->next_img;
             if (cur_img)
+            {
                 deletion(cur_img->unique_number); // delete front data
+                break;
+            }
             cur_dir = cur_dir->next_dir;
         }
     }

@@ -13,8 +13,8 @@ public:
     ListManager() {}
     ~ListManager() {}
 
-    void load();                                           // TODO: Loaded_List MAX size 100
-    void add(std::string dir_name, std::string file_name); // TODO: Loaded_List MAX size 100
+    void load();                                           
+    void add(std::string dir_name, std::string file_name); 
     void check_list() const { std::cout << list; }         // test
 };
 
