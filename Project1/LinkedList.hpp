@@ -81,22 +81,22 @@ void LinkedList::deletion(int unique)
     return;
 }
 
-// ListNode *LinkedList::search(int unique)
-// {
-//     ListNode *cur_dir = dir_node;
-//     ListNode *cur_img = nullptr;
+ListNode *LinkedList::search(int unique)
+{
+    ListNode *cur_dir = dir_node;
+    ListNode *cur_img = nullptr;
 
-//     while (cur_dir)
-//     {
-//         cur_img = cur_dir->next_img;
-//         while (cur_img)
-//         {
-//             if (cur_img->unique_number == unique)
-//                 return cur_img;
-//             cur_img = cur_img->next_img;
-//         }
-//         cur_dir = cur_dir->next_dir;
-//     }
-//     // NOT exist
-//     return nullptr;
-// }
+    while (cur_dir)
+    {
+        cur_img = cur_dir->next_img;
+        while (cur_img)
+        {
+            if (cur_img->unique_number == unique)
+                return cur_img;
+            cur_img = cur_img->next_img;
+        }
+        cur_dir = cur_dir->next_dir;
+    }
+    // NOT exist
+    return nullptr;
+}

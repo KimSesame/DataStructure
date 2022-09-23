@@ -37,6 +37,7 @@ void ListManager::load()
 
 void ListManager::add(std::string dir_name, std::string file_name)
 {
+    // Loaded_List NOT exist
     if (list.dir_node == nullptr)
     {
         print_error(ErrorCode::ADD_ERR);
@@ -77,5 +78,61 @@ void ListManager::add(std::string dir_name, std::string file_name)
     else
         print_error(ErrorCode::ADD_ERR);
 
+    return;
+}
+
+void ListManager::modify(std::string dir_name, std::string img_name, int unique)
+{
+    // Loaded_List NOT exist
+    if (list.dir_node == nullptr)
+    {
+        print_error(ErrorCode::MODIFY_ERR);
+        return;
+    }
+
+    // Duplicated unique number
+    if (list.search(unique))
+    {
+        print_error(ErrorCode::MODIFY_ERR);
+        return;
+    }
+
+    ListNode *cur_dir = nullptr;
+    ListNode *cur_img = nullptr;
+    ListNode *modified_node = nullptr;
+
+    // Find directory
+    cur_dir = list.dir_node;
+    while (cur_dir)
+    {
+        if (cur_dir->dirname == dir_name)
+            break;
+        cur_dir = cur_dir->next_dir;
+    }
+
+    // Find img with file name
+    if (cur_dir->dirname == dir_name)
+    {
+        cur_img = cur_dir;
+        while (cur_img->next_img)
+        {
+            if (cur_img->next_img->name == img_name)
+            {
+                modified_node = new ListNode(dir_name, img_name, unique);
+                list.deletion(cur_img->next_img->unique_number);
+                modified_node->next_img = cur_img->next_img;
+                cur_img->next_img = modified_node;
+                (list.size)++;
+                std::cout << "=======MODIFY=======" << std::endl;
+                std::cout << "SUCCESS" << std::endl;
+                std::cout << "====================" << std::endl;
+                return;
+            }
+            cur_img = cur_img->next_img;
+        }
+    }
+
+    // Error if NOR found
+    print_error(ErrorCode::MODIFY_ERR);
     return;
 }

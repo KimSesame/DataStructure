@@ -15,6 +15,8 @@ int main(void)
             manager.LOAD();
         else if (command == "ADD")
             manager.ADD();
+        else if (command == "MODIFY")
+            manager.MODIFY();
         else if (command == "CHECKLIST")
             manager.checkList();
     } while (command != "EXIT");

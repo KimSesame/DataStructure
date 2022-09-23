@@ -19,7 +19,7 @@ public:
     inline int getSize() const { return size; }
     void insert(std::string dir_name, std::string file_name = "\0", int unique = -1);
     void deletion(int unique);
-    // ListNode* search(int unique);
+    ListNode* search(int unique);
 
     friend std::ostream &operator<<(std::ostream &os, const LinkedList &list)
     {

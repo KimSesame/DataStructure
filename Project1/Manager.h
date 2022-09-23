@@ -10,9 +10,8 @@ private:
 public:
     void LOAD() { list_manager.load(); }
     void ADD();
+    void MODIFY();
 
-    // std::string& getCommand();
-    // void runCommand(std::string command);
     // test
     void checkList() const
     {
