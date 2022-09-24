@@ -12,7 +12,7 @@ void ListManager::load()
 
     if (csv.is_open())
     {
-        list.dir_node = new ListNode("img_files");
+        list.dir_node = new Loaded_LIST_Node("img_files");
         std::cout << "========LOAD========" << std::endl;
         while (std::getline(csv, unique_number, ',')) // EOF if cannot extract unqiue_number
         {
@@ -44,7 +44,7 @@ void ListManager::add(std::string dir_name, std::string file_name)
         return;
     }
 
-    ListNode *cur_dir = list.dir_node;
+    Loaded_LIST_Node *cur_dir = list.dir_node;
 
     std::string unique_number;
     std::string image_title;
@@ -58,7 +58,7 @@ void ListManager::add(std::string dir_name, std::string file_name)
         // Make directory node
         while (cur_dir->next_dir)
             cur_dir = cur_dir->next_dir;
-        cur_dir->next_dir = new ListNode(dir_name);
+        cur_dir->next_dir = new Loaded_LIST_Node(dir_name);
 
         while (std::getline(csv, unique_number, ',')) // EOF if cannot extract unqiue_number
         {
@@ -97,9 +97,9 @@ void ListManager::modify(std::string dir_name, std::string img_name, int unique)
         return;
     }
 
-    ListNode *cur_dir = nullptr;
-    ListNode *cur_img = nullptr;
-    ListNode *modified_node = nullptr;
+    Loaded_LIST_Node *cur_dir = nullptr;
+    Loaded_LIST_Node *cur_img = nullptr;
+    Loaded_LIST_Node *modified_node = nullptr;
 
     // Find directory
     cur_dir = list.dir_node;
@@ -118,7 +118,7 @@ void ListManager::modify(std::string dir_name, std::string img_name, int unique)
         {
             if (cur_img->next_img->name == img_name)
             {
-                modified_node = new ListNode(dir_name, img_name, unique);
+                modified_node = new Loaded_LIST_Node(dir_name, img_name, unique);
                 list.deletion(cur_img->next_img->unique_number);
                 modified_node->next_img = cur_img->next_img;
                 cur_img->next_img = modified_node;

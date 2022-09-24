@@ -3,24 +3,24 @@
 #include "ImageNode.h"
 #include <iostream>
 
-class ListNode : public ImageNode
+class Loaded_LIST_Node : public ImageNode
 {
-    friend class LinkedList;
+    friend class Loaded_LIST;
     friend class ListManager;
 
 private:
-    ListNode *next_dir;
-    ListNode *next_img;
+    Loaded_LIST_Node *next_dir;
+    Loaded_LIST_Node *next_img;
 
 public:
-    ListNode(std::string dir, std::string name = "\0", int number = -1)
+    Loaded_LIST_Node(std::string dir, std::string name = "\0", int number = -1)
         : ImageNode(dir, name, number), next_dir(nullptr), next_img(nullptr) {}
-    ~ListNode() {}
+    ~Loaded_LIST_Node() {}
 
-    ListNode *getNextDir() { return next_dir; }
-    ListNode *getNextImg() { return next_img; }
+    Loaded_LIST_Node *getNextDir() { return next_dir; }
+    Loaded_LIST_Node *getNextImg() { return next_img; }
 
-    friend std::ostream &operator<<(std::ostream &os, const ListNode &node)
+    friend std::ostream &operator<<(std::ostream &os, const Loaded_LIST_Node &node)
     {
         if (node.unique_number == -1)                                      // dir_node
             os << "[" << node.dirname << "] " << std::endl;                // Debug with print

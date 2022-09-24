@@ -1,13 +1,13 @@
 #pragma once
 
-#include "LinkedList.h"
+#include "Loaded_LIST.h"
 
 class ListManager
 {
     friend class Manager;
 
 private:
-    LinkedList list;
+    Loaded_LIST list;
 
 public:
     ListManager() {}

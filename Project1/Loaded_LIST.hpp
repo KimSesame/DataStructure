@@ -1,10 +1,10 @@
-#include "LinkedList.h"
+#include "Loaded_LIST.h"
 
-void LinkedList::insert(std::string dir_name, std::string file_name, int unique)
+void Loaded_LIST::insert(std::string dir_name, std::string file_name, int unique)
 {
-    ListNode *new_node = new ListNode(dir_name, file_name, unique);
-    ListNode *cur_dir = nullptr;
-    ListNode *cur_img = nullptr;
+    Loaded_LIST_Node *new_node = new Loaded_LIST_Node(dir_name, file_name, unique);
+    Loaded_LIST_Node *cur_dir = nullptr;
+    Loaded_LIST_Node *cur_img = nullptr;
 
     // EMPTY case
     if (this->dir_node == nullptr)
@@ -45,12 +45,12 @@ void LinkedList::insert(std::string dir_name, std::string file_name, int unique)
     return;
 }
 
-void LinkedList::deletion(int unique)
+void Loaded_LIST::deletion(int unique)
 {
-    ListNode *cur_dir = dir_node;
-    ListNode *cur_img = nullptr;
-    ListNode *del_prev_node = nullptr;
-    ListNode *del_node = nullptr;
+    Loaded_LIST_Node *cur_dir = dir_node;
+    Loaded_LIST_Node *cur_img = nullptr;
+    Loaded_LIST_Node *del_prev_node = nullptr;
+    Loaded_LIST_Node *del_node = nullptr;
     int loop_break = 0;
 
     // Find del_prev_node & del_node
@@ -81,10 +81,10 @@ void LinkedList::deletion(int unique)
     return;
 }
 
-ListNode *LinkedList::search(int unique)
+Loaded_LIST_Node *Loaded_LIST::search(int unique)
 {
-    ListNode *cur_dir = dir_node;
-    ListNode *cur_img = nullptr;
+    Loaded_LIST_Node *cur_dir = dir_node;
+    Loaded_LIST_Node *cur_img = nullptr;
 
     while (cur_dir)
     {

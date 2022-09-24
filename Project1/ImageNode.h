@@ -4,11 +4,11 @@
 #include <iostream>
 class ImageNode
 {
-    friend class ListNode;
-    friend class LinkedList;
+    friend class Loaded_LIST_Node;
+    friend class Loaded_LIST;
     friend class ListManager;
-    friend class TreeNode;
-    friend class BinarySearchTree;
+    friend class Database_BST_Node;
+    friend class Database_BST;
     friend class TreeManager;
 
 protected:
