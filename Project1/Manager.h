@@ -1,16 +1,20 @@
 #pragma once
 
 #include "ListManager.h"
+#include "TreeManager.h"
 
 class Manager
 {
 private:
     ListManager list_manager;
+    TreeManager tree_manager;
 
 public:
     void LOAD() { list_manager.load(); }
     void ADD();
     void MODIFY();
+    void MOVE();
+    void PRINT() const;
 
     // test
     void checkList() const

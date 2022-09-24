@@ -46,3 +46,39 @@ void Manager::MODIFY()
 
     return;
 }
+
+void Manager::MOVE()
+{
+    Loaded_LIST_Node *target = nullptr;
+
+    if (list_manager.list.getSize() == 0)
+    {
+        print_error(ErrorCode::MOVE_ERR);
+        return;
+    }
+
+    std::cout << "========MOVE========" << std::endl;
+    while (list_manager.list.getSize() != 0)
+    {
+        target = list_manager.getTail();
+        tree_manager.bst.insert(target->getDirName(), target->getName(), target->getUniqueNumber());
+        list_manager.list.deletion(target->getUniqueNumber());
+    }
+    std::cout << "SUCCESS" << std::endl;
+    std::cout << "====================" << std::endl;
+    return;
+}
+
+void Manager::PRINT() const
+{
+    if (tree_manager.bst.root == nullptr)
+    {
+        print_error(ErrorCode::PRINT_ERR);
+        return;
+    }
+
+    std::cout << "========PRINT=======" << std::endl;
+    tree_manager.print();
+    std::cout << "====================" << std::endl;
+    std::cout << "tree size: " << tree_manager.bst.getSize() << std::endl;  // test
+}

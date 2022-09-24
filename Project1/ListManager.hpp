@@ -67,7 +67,7 @@ void ListManager::add(std::string dir_name, std::string file_name)
             image_title = image_title.substr(0, image_title.find(".RAW"));
 
             // Insert data to linked list
-            list.insert("img_files", image_title, atoi(unique_number.c_str()));
+            list.insert(dir_name, image_title, atoi(unique_number.c_str()));
         }
 
         std::cout << "========ADD=========" << std::endl;
@@ -135,4 +135,23 @@ void ListManager::modify(std::string dir_name, std::string img_name, int unique)
     // Error if NOR found
     print_error(ErrorCode::MODIFY_ERR);
     return;
+}
+
+Loaded_LIST_Node *ListManager::getTail() const
+{
+    Loaded_LIST_Node *cur_dir = nullptr;
+    Loaded_LIST_Node *cur_img = nullptr;
+
+    // EMPTY LIST
+    if (list.dir_node == nullptr)
+        return nullptr;
+
+    cur_dir = list.dir_node;
+    while (cur_dir->next_dir)
+        cur_dir = cur_dir->next_dir;
+    cur_img = cur_dir;
+    while (cur_img->next_img)
+        cur_img = cur_img->next_img;
+
+    return cur_img;
 }

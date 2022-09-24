@@ -17,6 +17,10 @@ int main(void)
             manager.ADD();
         else if (command == "MODIFY")
             manager.MODIFY();
+        else if (command == "MOVE")
+            manager.MOVE();
+        else if (command == "PRINT")
+            manager.PRINT();
         else if (command == "CHECKLIST")
             manager.checkList();
     } while (command != "EXIT");

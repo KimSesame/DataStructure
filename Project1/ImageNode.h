@@ -22,6 +22,10 @@ public:
     ImageNode(std::string dir, std::string name, int number)
         : dirname(dir), name(name), unique_number(number) {}
 
+    std::string getName() const { return name; }
+    std::string getDirName() const { return dirname; }
+    int getUniqueNumber() const { return unique_number; }
+
     friend std::ostream &operator<<(std::ostream &os, const ImageNode &node)
     {
         os << "(node.m_name: " << node.name << "), "; // Debug with print

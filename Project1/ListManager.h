@@ -16,6 +16,8 @@ public:
     void load();                                           
     void add(std::string dir_name, std::string file_name); 
     void modify(std::string dir_name, std::string img_name, int unique); 
+    
+    Loaded_LIST_Node* getTail() const;
     void check_list() const { std::cout << list; }         // test
 };
 

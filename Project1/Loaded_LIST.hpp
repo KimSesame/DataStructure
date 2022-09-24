@@ -47,6 +47,7 @@ void Loaded_LIST::insert(std::string dir_name, std::string file_name, int unique
 
 void Loaded_LIST::deletion(int unique)
 {
+    Loaded_LIST_Node *prev_dir = nullptr;
     Loaded_LIST_Node *cur_dir = dir_node;
     Loaded_LIST_Node *cur_img = nullptr;
     Loaded_LIST_Node *del_prev_node = nullptr;
@@ -70,12 +71,22 @@ void Loaded_LIST::deletion(int unique)
         }
         if (loop_break)
             break;
+        prev_dir = cur_dir;
         cur_dir = cur_dir->next_dir;
     }
 
     // Delete
     del_prev_node->next_img = del_node->next_img;
     delete del_node;
+    //  delete dir_node if empty after deletion
+    if (del_prev_node->unique_number == -1)
+    {
+        if (prev_dir)
+            prev_dir->next_dir = nullptr;
+        else
+            dir_node = nullptr;
+        delete del_prev_node;
+    }
     size--;
 
     return;
