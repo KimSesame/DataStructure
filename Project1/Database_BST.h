@@ -18,7 +18,11 @@ public:
     // ~Database_BST();
 
     int getSize() const { return size; }
+    Database_BST_Node* getMin(Database_BST_Node* start) const;
+    Database_BST_Node* getMax(Database_BST_Node* start) const;
+    Database_BST_Node* search(int unique) const;
     void insert(std::string dir_name, std::string file_name, int unique); // TODO: consider MAX size
+    void deletion(int unique);
     void print(Database_BST_Node *start) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Database_BST &tree)
