@@ -9,14 +9,16 @@ class Database_BST_Node : public ImageNode
     friend class TreeManager;
 
 private:
+    Database_BST_Node *parent;
     Database_BST_Node *left;
     Database_BST_Node *right;
 
 public:
     Database_BST_Node(std::string dir, std::string name, int number)
-        : ImageNode(dir, name, number), left(nullptr), right(nullptr) {}
+        : ImageNode(dir, name, number), parent(nullptr), left(nullptr), right(nullptr) {}
     ~Database_BST_Node() {}
 
+    Database_BST_Node *getParent() { return parent; }
     Database_BST_Node *getLeft() { return left; }
     Database_BST_Node *getRight() { return right; }
 
