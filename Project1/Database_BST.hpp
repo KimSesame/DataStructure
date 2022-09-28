@@ -52,6 +52,10 @@ void Database_BST::insert(std::string dir_name, std::string file_name, int uniqu
         return;
     }
 
+    // Inspect the BST size
+    if (size >= BST_MAX)
+        deletion(getMin(root)->unique_number);
+
     // Insert
     cur_node = root;
     while (cur_node)
@@ -170,7 +174,7 @@ void Database_BST::deletion(int unique)
     {
         replace_node = getMax(del_node->left);
         // Swap data
-        temp = new Database_BST_Node(*del_node);  
+        temp = new Database_BST_Node(*del_node);
         del_node->dirname = replace_node->dirname;
         del_node->name = replace_node->name;
         del_node->unique_number = replace_node->unique_number;
@@ -184,6 +188,7 @@ void Database_BST::deletion(int unique)
     }
 
     delete del_node;
+    size--;
 }
 
 void Database_BST::print(Database_BST_Node *start) const
