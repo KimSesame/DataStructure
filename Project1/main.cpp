@@ -21,6 +21,8 @@ int main(void)
             manager.MOVE();
         else if (command == "PRINT")
             manager.PRINT();
+        else if (command == "SEARCH")
+            manager.SEARCH();
         else if (command == "CHECKLIST")
             manager.checkList();
     } while (command != "EXIT");

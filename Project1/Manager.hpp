@@ -80,5 +80,27 @@ void Manager::PRINT() const
     std::cout << "========PRINT=======" << std::endl;
     tree_manager.print();
     std::cout << "====================" << std::endl;
-    std::cout << "tree size: " << tree_manager.bst.getSize() << std::endl;  // test
+    std::cout << "tree size: " << tree_manager.bst.getSize() << std::endl; // test
+}
+
+void Manager::SEARCH() const
+{
+    std::string param;
+    std::string target;
+
+    if (tree_manager.bst.size == 0)
+    {
+        print_error(ErrorCode::SEARCH_ERR);
+        return;
+    }
+
+    std::cin.clear();
+    getline(std::cin, param, '\n');
+    param.erase(0, 2); // erase " \"" at front
+    target = param.substr(0, param.find_first_of('\"'));
+
+    if (target.empty())
+        print_error(ErrorCode::SEARCH_ERR);
+    else
+        tree_manager.search(target);
 }

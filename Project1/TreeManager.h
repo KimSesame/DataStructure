@@ -13,7 +13,8 @@ public:
     TreeManager() {}
     ~TreeManager() {}
 
-    void print() const { std::cout << bst; }   // test
+    void print() const { std::cout << bst; }
+    void search(std::string target) const;
 };
 
 #include "TreeManager.hpp"
