@@ -11,7 +11,9 @@ int main(void)
     {
         cin >> command;
 
-        if (command == "LOAD")
+        if (command == "EXIT")
+            break;
+        else if (command == "LOAD")
             manager.LOAD();
         else if (command == "ADD")
             manager.ADD();
@@ -25,6 +27,8 @@ int main(void)
             manager.SEARCH();
         else if (command == "CHECKLIST")
             manager.checkList();
+        else
+            print_error(ErrorCode::UNDEFINED_ERR);
     } while (command != "EXIT");
 
     return 0;
