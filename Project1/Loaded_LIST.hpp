@@ -79,12 +79,12 @@ void Loaded_LIST::deletion(int unique)
     del_prev_node->next_img = del_node->next_img;
     delete del_node;
     //  delete dir_node if empty after deletion
-    if (del_prev_node->unique_number == -1)
+    if (del_prev_node->unique_number == -1 && del_prev_node->next_img == nullptr)
     {
         if (prev_dir)
-            prev_dir->next_dir = nullptr;
+            prev_dir->next_dir = (prev_dir->next_dir) ? prev_dir->next_dir->next_dir : nullptr;
         else
-            dir_node = nullptr;
+            dir_node = dir_node->next_dir;
         delete del_prev_node;
     }
     size--;
