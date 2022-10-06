@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Database_BST.h"
+#include "Stack.h"
+#include "Queue.h"
 
 class TreeManager
 {
@@ -8,13 +10,20 @@ class TreeManager
 
 private:
     Database_BST bst;
+    Stack stack;
+    Queue queue;
 
 public:
     TreeManager() {}
     ~TreeManager() {}
 
     void print() const { std::cout << bst; }
-    void search(std::string target) const;
+    void search(std::string target);
+    
+    void set_queue();
+
+    // test
+    void print_queue();
 };
 
 #include "TreeManager.hpp"
