@@ -83,7 +83,7 @@ void Manager::PRINT() const
     std::cout << "tree size: " << tree_manager.bst.getSize() << std::endl; // test
 }
 
-void Manager::SEARCH() const
+void Manager::SEARCH()
 {
     std::string param;
     std::string target;

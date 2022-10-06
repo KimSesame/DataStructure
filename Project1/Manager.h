@@ -15,7 +15,7 @@ public:
     void MODIFY();
     void MOVE();
     void PRINT() const;
-    void SEARCH() const;
+    void SEARCH();
 
     // test
     void checkList() const
