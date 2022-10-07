@@ -13,7 +13,8 @@ private:
 public:
     Queue() : front(nullptr), rear(nullptr) {}
 
-    void enqueue(Database_BST_Node* p_node);
+    bool is_empty() const { return front == nullptr; }
+    void enqueue(Database_BST_Node *p_node);
     Database_BST_Node *dequeue();
 };
 
