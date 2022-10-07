@@ -17,7 +17,7 @@ void TreeManager::set_queue()
     while (!stack.is_empty())
     {
         if ((cur_node->left == nullptr && cur_node->right == nullptr) ||
-            (cur_node->left->visited && cur_node->right == nullptr) ||
+            (cur_node->left != nullptr && cur_node->left->visited && cur_node->right == nullptr) ||
             (cur_node->right == last_node && last_node != nullptr))
         {
             cur_node->visited = true;
@@ -27,7 +27,7 @@ void TreeManager::set_queue()
             continue;
         }
 
-        if (cur_node->left)
+        if (cur_node->left && cur_node->left->visited == false)
             stack.push(cur_node->left);
         else if (cur_node->right)
             stack.push(cur_node->right);
@@ -38,5 +38,5 @@ void TreeManager::set_queue()
 void TreeManager::print_queue()
 {
     while (queue.front)
-        std::cout << queue.dequeue();
+        std::cout << *(queue.dequeue());
 }
