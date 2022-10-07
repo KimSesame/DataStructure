@@ -12,6 +12,7 @@ private:
     Database_BST bst;
     Stack stack;
     Queue queue;
+    std::string img_route;  // selected route
 
 public:
     TreeManager() {}
@@ -19,6 +20,7 @@ public:
 
     void print() const { std::cout << bst; }
     void search(std::string target);
+    void select(Database_BST_Node* start, int unique);
     
     void set_queue();
     bool string_search(std::string str, std::string target);

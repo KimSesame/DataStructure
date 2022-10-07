@@ -104,3 +104,32 @@ void Manager::SEARCH()
     else
         tree_manager.search(target);
 }
+
+void Manager::SELECT()
+{
+    std::string param;
+    std::string num;
+
+    std::cin.clear();
+    getline(std::cin, param, '\n');
+    param.erase(0, 1);
+    num = param;
+
+    if (num.empty())
+        print_error(ErrorCode::SELECT_ERR);
+    else
+    {
+        tree_manager.img_route = "";
+        tree_manager.select(tree_manager.bst.root, atoi(num.c_str()));
+
+        if (tree_manager.img_route.empty()) // img_route unchanged
+            print_error(ErrorCode::SELECT_ERR);
+        else
+        {
+            std::cout << "=======SELECT=======" << std::endl;
+            std::cout << "SUCCESS" << std::endl;
+            std::cout << "====================" << std::endl;
+            std::cout << tree_manager.img_route << std::endl; // test
+        }
+    }
+}

@@ -16,6 +16,17 @@ void TreeManager::search(std::string target)
     std::cout << "====================" << std::endl;
 }
 
+void TreeManager::select(Database_BST_Node *start, int unique)
+{
+    if (start)
+    {
+        if (start->unique_number == unique)
+            img_route = start->dirname + "/" + start->name + ".RAW";
+        select(start->left, unique);
+        select(start->right, unique);
+    }
+}
+
 void TreeManager::set_queue()
 {
     Database_BST_Node *cur_node = bst.root;
