@@ -21,6 +21,7 @@ public:
     void search(std::string target);
     
     void set_queue();
+    bool string_search(std::string str, std::string target);
 
     // test
     void print_queue();
