@@ -21,7 +21,7 @@ void TreeManager::select(Database_BST_Node *start, int unique)
     if (start)
     {
         if (start->unique_number == unique)
-            img_route = start->dirname + "/" + start->name + ".RAW";
+            img_route = "C:/Users/kimbs/repos/Assignments/DataStructure/Project1/" + start->dirname + "/" + start->name;
         select(start->left, unique);
         select(start->right, unique);
     }

@@ -7,8 +7,9 @@ void ListManager::load()
     std::string unique_number;
     std::string image_title;
 
-    std::fstream csv("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/img_files/filesnumbers.csv", std::ios::in); // Open the csv file
-    csv.seekp(3, std::ios::beg);                                                                                          // Skip the BOM
+    // Open the csv file
+    std::fstream csv("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/img_files/filesnumbers.csv", std::ios::in);
+    csv.seekp(3, std::ios::beg); // Skip the BOM
 
     if (csv.is_open())
     {
@@ -50,7 +51,7 @@ void ListManager::add(std::string dir_name, std::string file_name)
     std::string image_title;
 
     // Open the csv file
-    std::fstream csv(std::string("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/").append(dir_name).append("/").append(file_name), std::ios::in);
+    std::fstream csv("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/" + dir_name + "/" + file_name, std::ios::in);
     csv.seekp(3, std::ios::beg); // Skip the BOM
 
     if (csv.is_open())
@@ -132,7 +133,7 @@ void ListManager::modify(std::string dir_name, std::string img_name, int unique)
         }
     }
 
-    // Error if NOR found
+    // Error if NOT found
     print_error(ErrorCode::MODIFY_ERR);
     return;
 }

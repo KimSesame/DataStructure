@@ -27,7 +27,9 @@ int main(void)
             manager.SEARCH();
         else if (command == "SELECT")
             manager.SELECT();
-        else if (command == "   CHECKLIST") // test
+        else if (command == "EDIT")
+            manager.EDIT();
+        else if (command == "CHECKLIST") // test
             manager.checkList();
         else
             print_error(ErrorCode::UNDEFINED_ERR);

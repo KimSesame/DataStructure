@@ -1,5 +1,6 @@
 #include "Manager.h"
 #include "Error.h"
+#include "ImageEdit.h"
 #include <iostream>
 
 void Manager::ADD()
@@ -130,6 +131,48 @@ void Manager::SELECT()
             std::cout << "SUCCESS" << std::endl;
             std::cout << "====================" << std::endl;
             std::cout << tree_manager.img_route << std::endl; // test
+        }
+    }
+}
+
+void Manager::EDIT()
+{
+    std::string param;
+    std::string option;
+    std::string value;
+
+    std::cin.clear();
+    getline(std::cin, param, '\n');
+    param.erase(0, 1);
+    option = param.substr(0, 2);
+    param.erase(0, 3);
+    value = param;
+
+    if (option.empty())
+        print_error(ErrorCode::EDIT_ERR);
+    else if (option == "-l" && value.empty())
+        print_error(ErrorCode::EDIT_ERR);
+    else
+    {
+        switch (option.at(1))
+        {
+        case 'f':
+            flip(tree_manager.img_route);
+            break;
+        case 'l':
+            light(tree_manager.img_route, atoi(value.c_str()));
+            break;
+        case 'r':
+            resize(tree_manager.img_route);
+            break;
+        // test
+        case 'c':
+            copy(tree_manager.img_route);
+            break;
+        //
+        default:
+            print_error(ErrorCode::EDIT_ERR);
+            break;
         }
     }
 }

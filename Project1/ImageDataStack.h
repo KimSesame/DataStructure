@@ -11,6 +11,7 @@ private:
 
 public:
     ImageData(unsigned char data) : data(data), link(nullptr) {}
+    unsigned char getData() const { return data; }
 };
 
 class ImageDataStack

@@ -17,6 +17,7 @@ public:
     void PRINT() const;
     void SEARCH();
     void SELECT();
+    void EDIT();
 
     // test
     void checkList() const
