@@ -2,6 +2,7 @@
 
 #include "iostream"
 #include "cstdio"
+#include "cmath"
 #include "ImageDataStack.h"
 #include "ImageDataQueue.h"
 
@@ -125,7 +126,8 @@ void light(std::string i_route, int value)
 void resize(std::string i_route)
 {
     unsigned char i_data[HEIGHT][WIDTH];
-    unsigned char o_data[HEIGHT/4][WIDTH/4];
+    unsigned char o_data[HEIGHT / 2][WIDTH / 2];
+    double total = 0; // total of near 4 pixels
 
     std::string i_name = i_route.substr(i_route.find_last_of("/") + 1, i_route.size());
     std::string i_file = i_route + ".RAW";
@@ -141,11 +143,21 @@ void resize(std::string i_route)
     fread(i_data, sizeof(unsigned char), HEIGHT * WIDTH, i_raw);
 
     // Resize
-    // NEED implement
+    int o_i = 0, o_j = 0;
+    for (int i = 0; i < HEIGHT; i += 2)
+    {
+        o_j = 0;
+        for (int j = 0; j < WIDTH; j += 2)
+        {
+            total = (i_data[i][j] + i_data[i][j + 1] + i_data[i + 1][j] + i_data[i + 1][j + 1]);
+            o_data[o_i][o_j++] = round(total / 4);
+        }
+        o_i++;
+    }
 
-    // Write adjusted data
+    // Write resized data
     o_raw = fopen(o_file.c_str(), "wb");
-    fwrite(o_data, sizeof(unsigned char), HEIGHT * WIDTH, o_raw);
+    fwrite(o_data, sizeof(unsigned char), (HEIGHT / 2) * (WIDTH / 2), o_raw);
 
     fclose(i_raw);
     fclose(o_raw);
