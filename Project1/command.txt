@@ -1,0 +1,14 @@
+LOAD
+ADD img_test1 test1.csv
+MODIFY img_test1 "the clock" 1111
+MOVE
+PRINT
+SEARCH "man"
+SELECT 555
+EDIT -f
+SELECT 666
+EDIT -l 150
+SELECT 777
+EDIT -r
+UNDEFIEND
+EXIT

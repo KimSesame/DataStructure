@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 
 typedef enum _ErrorCode
 {
@@ -19,9 +20,12 @@ void print_error(ErrorCode code);
 
 void print_error(ErrorCode code)
 {
-    std::cout << "========ERROR=======" << std::endl;
-    std::cout << code << std::endl;
-    std::cout << "====================" << std::endl;
+    std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
 
+    out << "========ERROR=======\n";
+    out << code << std::endl;
+    out << "====================\n";
+
+    out.close();
     return;
 }

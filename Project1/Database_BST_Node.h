@@ -26,9 +26,10 @@ public:
     Database_BST_Node *getLeft() { return left; }
     Database_BST_Node *getRight() { return right; }
 
-    friend std::ostream &operator<<(std::ostream &os, const Database_BST_Node &node)
+    friend void operator<<(std::fstream &os, const Database_BST_Node &node)
     {
+        std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
         os << node.dirname << " / \"" << node.name << "\" / " << node.unique_number << std::endl;
-        return os;
+        out.close();
     }
 };

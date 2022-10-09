@@ -1,8 +1,8 @@
 #pragma once
 
-#include "iostream"
-#include "cstdio"
-#include "cmath"
+#include <iostream>
+#include <cstdio>
+#include <cmath>
 #include "ImageDataStack.h"
 #include "ImageDataQueue.h"
 

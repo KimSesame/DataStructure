@@ -13,8 +13,10 @@ void ListManager::load()
 
     if (csv.is_open())
     {
+        std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
+
         list.dir_node = new Loaded_LIST_Node("img_files");
-        std::cout << "========LOAD========" << std::endl;
+        out << "========LOAD========\n";
         while (std::getline(csv, unique_number, ',')) // EOF if cannot extract unqiue_number
         {
             // Extract data from csv file
@@ -22,13 +24,14 @@ void ListManager::load()
             image_title = image_title.substr(0, image_title.find(".RAW"));
 
             // Print data
-            std::cout << image_title << "/" << unique_number << std::endl;
+            out << image_title << "/" << unique_number << std::endl;
 
             // Insert data to linked list
             list.insert("img_files", image_title, atoi(unique_number.c_str()));
         }
-        std::cout << "====================" << std::endl;
+        out << "====================\n";
         csv.close();
+        out.close();
     }
     else
         print_error(ErrorCode::LOAD_ERR);
@@ -70,11 +73,13 @@ void ListManager::add(std::string dir_name, std::string file_name)
             // Insert data to linked list
             list.insert(dir_name, image_title, atoi(unique_number.c_str()));
         }
-
-        std::cout << "========ADD=========" << std::endl;
-        std::cout << "SUCCESS" << std::endl;
-        std::cout << "====================" << std::endl;
+    
+        std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
+        out << "========ADD=========" << std::endl;
+        out << "SUCCESS" << std::endl;
+        out << "====================" << std::endl;
         csv.close();
+        out.close();
     }
     else
         print_error(ErrorCode::ADD_ERR);
@@ -124,9 +129,12 @@ void ListManager::modify(std::string dir_name, std::string img_name, int unique)
                 modified_node->next_img = cur_img->next_img;
                 cur_img->next_img = modified_node;
                 (list.size)++;
-                std::cout << "=======MODIFY=======" << std::endl;
-                std::cout << "SUCCESS" << std::endl;
-                std::cout << "====================" << std::endl;
+
+                std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
+                out << "=======MODIFY=======" << std::endl;
+                out << "SUCCESS" << std::endl;
+                out << "====================" << std::endl;
+                out.close();
                 return;
             }
             cur_img = cur_img->next_img;

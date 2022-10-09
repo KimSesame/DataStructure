@@ -1,19 +1,28 @@
 #include "TreeManager.h"
 
+void TreeManager::print() const
+{
+    std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
+    out << bst;
+    out.close();
+}
+
 void TreeManager::search(std::string target)
 {
     Database_BST_Node *cur_node = nullptr;
+    std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
 
     set_queue();
-    std::cout << "=======SEARCH=======" << std::endl;
+    out << "=======SEARCH=======" << std::endl;
     while (!queue.is_empty())
     {
         cur_node = queue.dequeue();
         cur_node->visited = false;
         if (string_search(cur_node->name, target))
-            std::cout << *cur_node;
+            out << *cur_node;
     }
-    std::cout << "====================" << std::endl;
+    out << "====================" << std::endl;
+    out.close();
 }
 
 void TreeManager::select(Database_BST_Node *start, int unique)
@@ -74,10 +83,4 @@ bool TreeManager::string_search(std::string str, std::string target)
         cur_idx += (match_cnt > 1) ? match_cnt : 1;
     }
     return false;
-}
-
-void TreeManager::print_queue()
-{
-    while (queue.front)
-        std::cout << *(queue.dequeue());
 }

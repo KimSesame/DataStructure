@@ -18,15 +18,12 @@ public:
     TreeManager() {}
     ~TreeManager() {}
 
-    void print() const { std::cout << bst; }
+    void print() const;
     void search(std::string target);
     void select(Database_BST_Node* start, int unique);
     
     void set_queue();
     bool string_search(std::string str, std::string target);
-
-    // test
-    void print_queue();
 };
 
 #include "TreeManager.hpp"

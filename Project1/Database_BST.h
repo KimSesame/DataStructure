@@ -25,11 +25,9 @@ public:
     void deletion(int unique);
     void print(Database_BST_Node *start) const;
 
-    friend std::ostream &operator<<(std::ostream &os, const Database_BST &tree)
+    friend void operator<<(std::fstream &os, const Database_BST &tree)
     {
         tree.print(tree.root);
-
-        return os;
     }
 };
 

@@ -195,9 +195,11 @@ void Database_BST::print(Database_BST_Node *start) const
 {
     if (start)
     {
+        std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
         print(start->left);
-        std::cout << *start;
+        out << *start;
         print(start->right);
+        out.close();
     }
     return;
 }

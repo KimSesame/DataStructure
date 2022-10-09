@@ -11,20 +11,13 @@ private:
 
 public:
     void LOAD() { list_manager.load(); }
-    void ADD();
-    void MODIFY();
+    void ADD(std::string param);
+    void MODIFY(std::string param);
     void MOVE();
     void PRINT() const;
-    void SEARCH();
-    void SELECT();
-    void EDIT();
-
-    // test
-    void checkList() const
-    {
-        list_manager.check_list();
-        std::cout << "list size: " << list_manager.list.getSize() << std::endl;
-    }
+    void SEARCH(std::string param);
+    void SELECT(std::string param);
+    void EDIT(std::string param);
 };
 
 #include "Manager.hpp"
