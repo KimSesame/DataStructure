@@ -14,7 +14,7 @@ private:
 
 public:
     Loaded_LIST() : dir_node(nullptr), size(0) {}
-    // ~Loaded_LIST();
+    ~Loaded_LIST() { while(dir_node) deletion(dir_node->next_img->unique_number); }
 
     inline int getSize() const { return size; }
     void insert(std::string dir_name, std::string file_name = "\0", int unique = -1);

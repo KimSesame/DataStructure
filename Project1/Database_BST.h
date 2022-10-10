@@ -15,7 +15,7 @@ private:
 
 public:
     Database_BST() : root(nullptr), size(0) {}
-    // ~Database_BST();
+    ~Database_BST() { while(root) deletion(getMin(root)->unique_number); }
 
     int getSize() const { return size; }
     Database_BST_Node* getMin(Database_BST_Node* start) const;
