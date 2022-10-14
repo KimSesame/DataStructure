@@ -27,7 +27,7 @@ void ListManager::load()
             out << image_title << "/" << unique_number << std::endl;
 
             // Insert data to linked list
-            list.insert("img_files", image_title, atoi(unique_number.c_str()));
+            list.insert("img_files", image_title, stoi(unique_number));
         }
         out << "====================\n";
         csv.close();
@@ -71,7 +71,7 @@ void ListManager::add(std::string dir_name, std::string file_name)
             image_title = image_title.substr(0, image_title.find(".RAW"));
 
             // Insert data to linked list
-            list.insert(dir_name, image_title, atoi(unique_number.c_str()));
+            list.insert(dir_name, image_title, stoi(unique_number));
         }
     
         std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);

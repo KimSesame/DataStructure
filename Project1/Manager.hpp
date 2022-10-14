@@ -35,7 +35,7 @@ void Manager::MODIFY(std::string param)
     if (dir_name.empty() || img_name.empty() || num.empty())
         print_error(ErrorCode::MODIFY_ERR);
     else
-        list_manager.modify(dir_name, img_name, atoi(num.c_str()));
+        list_manager.modify(dir_name, img_name, stoi(num));
 
     return;
 }
@@ -109,7 +109,7 @@ void Manager::SELECT(std::string param)
     else
     {
         tree_manager.img_route = "";
-        tree_manager.select(tree_manager.bst.root, atoi(num.c_str()));
+        tree_manager.select(tree_manager.bst.root, stoi(num));
 
         if (tree_manager.img_route.empty()) // img_route unchanged
             print_error(ErrorCode::SELECT_ERR);
@@ -149,7 +149,7 @@ void Manager::EDIT(std::string param)
             out << "====================" << std::endl;
             break;
         case 'l':
-            light(tree_manager.img_route, atoi(value.c_str()));
+            light(tree_manager.img_route, stoi(value));
             out << "========EDIT========" << std::endl;
             out << "SUCCESS" << std::endl;
             out << "====================" << std::endl;

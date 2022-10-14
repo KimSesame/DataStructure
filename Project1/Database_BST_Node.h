@@ -2,6 +2,7 @@
 
 #include "ImageNode.h"
 #include <iostream>
+#include <fstream>
 
 class Database_BST_Node : public ImageNode
 {
@@ -26,10 +27,11 @@ public:
     Database_BST_Node *getLeft() { return left; }
     Database_BST_Node *getRight() { return right; }
 
-    friend void operator<<(std::fstream &os, const Database_BST_Node &node)
+    friend std::fstream &operator<<(std::fstream &os, const Database_BST_Node &node)
     {
         std::fstream out("C:/Users/kimbs/repos/Assignments/DataStructure/Project1/log.txt", std::ios::out | std::ios::app);
         os << node.dirname << " / \"" << node.name << "\" / " << node.unique_number << std::endl;
         out.close();
+        return os;
     }
 };
