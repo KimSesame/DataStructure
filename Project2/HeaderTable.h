@@ -14,8 +14,8 @@ public:
 	HeaderTable() {}
 	~HeaderTable();
 	void insertTable(string item);
-	list<pair<int, string>> getindexTable() { return indexTable; }
-	map<string, FPNode *> getdataTable() { return dataTable; }
+	list<pair<int, string>>& getindexTable() { return indexTable; }
+	map<string, FPNode *>& getdataTable() { return dataTable; }
 	FPNode *getNode(string item) { return dataTable.find(item)->second; }
 	void descendingIndexTable() { indexTable.sort(greater<pair<int, string>>()); }
 	void ascendingIndexTable() { indexTable.sort(); }

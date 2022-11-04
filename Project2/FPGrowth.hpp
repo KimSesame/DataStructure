@@ -5,20 +5,20 @@ FPGrowth::FPGrowth()
     table = new HeaderTable;
 }
 
-bool FPGrowth::printList() const
+bool FPGrowth::printList(fstream& flog)
 {
-    fstream fout("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/log.txt", ios::out | ios::app);
+    list<pair<int, string>> indexTable = table->getindexTable();
+    list<pair<int, string>>::iterator iter = indexTable.begin();
 
     // EMPTY
-    if (table->getindexTable().size() == 0)
+    if (indexTable.size() == 0)
         return false;
 
     // Print
-    table->descendingIndexTable();
-    fout << "Item\tFrequency" << endl;
-    for (auto iter = table->getindexTable().begin(); iter != table->getindexTable().end(); iter++)
-        fout << (*iter).second << " " << (*iter).first << endl;
-    
-    fout.close();
+    indexTable.sort(greater<pair<int, string>>());
+    flog << "Item\tFrequency" << endl;
+    for (; iter != indexTable.end(); iter++)
+        flog << (*iter).second << " " << (*iter).first << endl;
+
     return true;
 }

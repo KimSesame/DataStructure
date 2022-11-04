@@ -16,7 +16,7 @@ public:
 
     HeaderTable *getHeaderTable() const { return table; }
 
-    bool printList() const;
+    bool printList(fstream& flog);
 };
 
 #include "FPGrowth.hpp"

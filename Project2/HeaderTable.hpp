@@ -6,7 +6,7 @@ HeaderTable::~HeaderTable()
 
 void HeaderTable::insertTable(string item)
 {
-    auto iter = indexTable.begin();
+    list<pair<int, string>>::iterator iter = indexTable.begin();
     // Inspect existence
     for (; iter != indexTable.end(); iter++)
     {
