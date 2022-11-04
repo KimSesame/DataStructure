@@ -1,0 +1,30 @@
+========LOAD========
+SUCCESS
+====================
+========PRINT_ITEMLIST========
+Item	Frequency
+whole wheat pasta 1
+avocado 3
+salmon 2
+soda 1
+cottage cheese 1
+shallot 1
+fresh tuna 2
+milk 5
+ham 1
+almonds 2
+escalope 2
+spaghetti 9
+frozen smoothie 2
+almonds 2
+cookies 1
+carrots 1
+chicken 3
+body spray 3
+soup 12
+carrots 1
+frozen smoothie 2
+carrots 1
+fresh bread 1
+bug spray 1
+==============================
