@@ -13,7 +13,7 @@ private:
 	map<string, FPNode *> children;
 
 public:
-	FPNode();
+	FPNode(int freq) : frequency(freq), parent(nullptr), next(nullptr) {}
 	~FPNode();
 	void setParent(FPNode *node) { this->parent = node; }
 	void setNext(FPNode *node) { next = node; }
@@ -24,7 +24,7 @@ public:
 	FPNode *getParent() { return parent; }
 	FPNode *getNext() { return next; }
 	FPNode *getChildrenNode(string item);
-	map<string, FPNode *> getChildren() { return children; }
+	map<string, FPNode *> &getChildren() { return children; }
 };
 
 #include "FPNode.hpp"

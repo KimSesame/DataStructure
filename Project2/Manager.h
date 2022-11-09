@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <queue>
 #include "Error.h"
 #include "FPGrowth.h"
 using namespace std;
@@ -25,6 +26,7 @@ public:
 
     void LOAD();
     void PRINT_ITEMLIST();
+    void PRINT_FPTREE();
 };
 
 #include "Manager.hpp"

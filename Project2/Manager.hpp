@@ -4,9 +4,12 @@ void Manager::LOAD()
 {
     string line;
     string item;
+    FPNode *root = nullptr;
+    priority_queue<pair<int, string>> pq; // max heap for descending sort
 
     fstream fin("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/market.txt", ios::in);
 
+    // Create indexTable
     if (!fin.is_open() || fpgrowth->getHeaderTable()->getindexTable().size() > 0)
     {
         flog << "========LOAD========" << endl;
@@ -20,17 +23,55 @@ void Manager::LOAD()
         {
             while (!line.empty())
             {
-                item = line.substr(0, line.find_first_of('\t'));
+                item = line.substr(0, line.find_first_of('\t')); // extract item
                 line.erase(0, item.size() + 1);
 
-                fpgrowth->createTable(item);
+                fpgrowth->createindexTable(item);
+            }
+        }
+    }
+
+    fin.close();
+
+    // Create dataTable
+    fpgrowth->createdataTable();
+
+    // Create fptree
+    fin.open("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/market.txt", ios::in);
+
+    while (getline(fin, line))
+    {
+        // Sort items by table order
+        while (!line.empty())
+        {
+            item = line.substr(0, line.find_first_of('\t'));
+            line.erase(0, item.size() + 1);
+
+            for (auto iter = fpgrowth->getHeaderTable()->getindexTable().begin(); iter != fpgrowth->getHeaderTable()->getindexTable().end(); iter++)
+            {
+                if ((*iter).second == item)
+                {
+                    pq.push(*iter);
+                    break;
+                }
             }
         }
 
-        flog << "========LOAD========" << endl;
-        flog << "SUCCESS" << endl;
-        flog << "====================" << endl;
+        // Insert fptree node
+        root = fpgrowth->getTree();
+        while (!pq.empty())
+        {
+            // cout << pq.top().second << endl; // test
+            fpgrowth->createFPtree(root, pq.top().second);
+            root = root->getChildrenNode(pq.top().second);
+            pq.pop();
+        }
     }
+
+    // Print log
+    flog << "========LOAD========" << endl;
+    flog << "SUCCESS" << endl;
+    flog << "====================" << endl;
 
     fin.close();
     return;
@@ -41,6 +82,16 @@ void Manager::PRINT_ITEMLIST()
     flog << "========PRINT_ITEMLIST========" << endl;
     if (!fpgrowth->printList(flog))
         flog << "ERROR " << ErrorCode::PRINT_ITEMLIST_ERR << endl;
+    flog << "==============================" << endl;
+
+    return;
+}
+
+void Manager::PRINT_FPTREE()
+{
+    flog << "========PRINT_FPTREE========" << endl;
+    if (!fpgrowth->printFPtree(flog))
+        flog << "ERROR " << ErrorCode::PRINT_FPTREE_ERR << endl;
     flog << "==============================" << endl;
 
     return;
