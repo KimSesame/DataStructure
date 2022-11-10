@@ -10,7 +10,7 @@ private:
     HeaderTable *table;
 
 public:
-    FPGrowth();
+    FPGrowth(int threshold);
 
     void createindexTable(string item) { table->insertTable(item); }
     void createdataTable();

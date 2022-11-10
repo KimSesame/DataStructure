@@ -13,9 +13,9 @@ private:
 public:
     fstream flog;
 
-    Manager()
+    Manager(int threshold)
     {
-        fpgrowth = new FPGrowth;
+        fpgrowth = new FPGrowth(threshold);
         flog.open("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/log.txt", ios::out | ios::app);
     }
 

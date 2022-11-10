@@ -6,7 +6,7 @@ using namespace std;
 
 int main(void)
 {
-    Manager manager;
+    Manager manager(2);
     string line("");
     string command("");
 

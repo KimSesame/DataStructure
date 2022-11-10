@@ -1,6 +1,6 @@
 #include "FPGrowth.h"
 
-FPGrowth::FPGrowth() : threshold(2)
+FPGrowth::FPGrowth(int threshold) : threshold(threshold)
 {
     fptree = new FPNode(0);
     table = new HeaderTable;
