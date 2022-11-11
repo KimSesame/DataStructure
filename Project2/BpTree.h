@@ -11,7 +11,7 @@ private:
 	BpTreeNode *root;
 	int order; // m children
 public:
-	BpTree(int order = 3) : root(nullptr), order(order) {}
+	BpTree(int order = 3) : root(new BpTreeNode), order(order) {}
 	~BpTree();
 
 	/* essential */

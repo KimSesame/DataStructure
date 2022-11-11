@@ -9,11 +9,7 @@ private:
 	BpTreeNode *pMostLeftChild;
 
 public:
-	BpTreeNode()
-	{
-		pParent = NULL;
-		pMostLeftChild = NULL;
-	}
+	BpTreeNode() : pParent(nullptr), pMostLeftChild(nullptr) {}
 	~BpTreeNode()
 	{
 	}

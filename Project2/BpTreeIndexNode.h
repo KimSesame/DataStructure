@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BpTreeNode.h"
-// template <class T>
+
 class BpTreeIndexNode : public BpTreeNode
 {
 private:
