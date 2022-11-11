@@ -1,12 +1,12 @@
+#include "Manager.h"
 #include <iostream>
 #include <fstream>
-#include "Manager.h"
 
 using namespace std;
 
 int main(void)
 {
-    Manager manager(2);
+    Manager manager(2, 3);
     string line("");
     string command("");
 

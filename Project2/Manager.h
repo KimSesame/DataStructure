@@ -1,21 +1,24 @@
 #pragma once
 
-#include <fstream>
-#include <queue>
 #include "Error.h"
 #include "FPGrowth.h"
+#include "BpTree.h"
+#include <fstream>
+#include <queue>
 using namespace std;
 class Manager
 {
 private:
     FPGrowth *fpgrowth;
+    BpTree* bptree;
 
 public:
     fstream flog;
 
-    Manager(int threshold)
+    Manager(int threshold, int BpOrder)
     {
         fpgrowth = new FPGrowth(threshold);
+        bptree = new BpTree(BpOrder);
         flog.open("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/log.txt", ios::out | ios::app);
     }
 
