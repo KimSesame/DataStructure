@@ -72,6 +72,35 @@ void BpTree::printFrequentPatterns(fstream &flog, set<string> pFrequentPattern, 
     }
 }
 
-bool BpTree::printBPtree(fstream &flog)
+bool BpTree::printBPtree(fstream &flog, string item, int min_freq)
 {
+    // EMPTY
+    if (root->getIndexMap()->size() == 0 && root->getDataMap()->size() == 0)
+        return false;
+
+    BpTreeNode *cur_node = root;
+    bool flag_print = false;
+
+    flog << "FrequentPattern\tFrequency" << endl;
+    // Move to head
+    while (cur_node->getMostLeftChild())
+        cur_node = cur_node->getMostLeftChild();
+
+    // Print if greater than min_frequency
+    while (cur_node->getNext())
+    {
+        map<int, FrequentPatternNode *> *cur_dataMap = cur_node->getDataMap();
+        map<int, FrequentPatternNode *>::iterator iter = cur_dataMap->begin();
+
+        for (; iter != cur_dataMap->end(); iter++)
+        {
+            if ((*iter).first > min_freq)
+            {
+                for (multimap<int, set<string>>::iterator it = (*iter).second->getList().begin(); it != (*iter).second->getList().end(); it++)
+                    printFrequentPatterns(flog, (*it).second, item);
+                flag_print = true;
+            }
+        }
+    }
+    return flag_print;
 }

@@ -26,6 +26,8 @@ int main(void)
             manager.PRINT_ITEMLIST();
         else if (command == "PRINT_FPTREE")
             manager.PRINT_FPTREE();
+        else if (command == "PRINT_BPTREE")
+            manager.PRINT_BPTREE(line);
     } while (command != "EXIT");
 
     return 0;

@@ -28,7 +28,7 @@ public:
 	bool printConfidence(string item, double item_frequency, double min_confidence);
 	bool printRange(string item, int min, int max);
 	void printFrequentPatterns(fstream& flog, set<string> pFrequentPattern, string item);
-	bool printBPtree(fstream& flog);
+	bool printBPtree(fstream& flog, string item, int min_freq);
 };
 
 #include "BpTree.hpp"

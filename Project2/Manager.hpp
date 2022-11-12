@@ -143,10 +143,17 @@ void Manager::PRINT_FPTREE()
     return;
 }
 
-void Manager::PRINT_BPTREE()
+void Manager::PRINT_BPTREE(string param)
 {
+    string item;
+    string min_freq;
+
+    item = param.substr(0, param.find_first_of('\t'));
+    param.erase(0, item.size() + 1);
+    min_freq = param;
+
     flog << "========PRINT_BPTREE========" << endl;
-    if (!bptree->printBPtree(flog))
+    if ((item.empty() || min_freq.empty()) || !bptree->printBPtree(flog, item, atoi(min_freq.c_str())))
         flog << "ERROR " << ErrorCode::PRINT_BPTREE_ERR << endl;
     flog << "============================" << endl;
 

@@ -32,7 +32,7 @@ public:
     void BTLOAD();
     void PRINT_ITEMLIST();
     void PRINT_FPTREE();
-    void PRINT_BPTREE();
+    void PRINT_BPTREE(string param);
 };
 
 #include "Manager.hpp"
