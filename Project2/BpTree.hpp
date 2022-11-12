@@ -1,9 +1,7 @@
 #include "BpTree.h"
 
-bool BpTree::Insert(int key, set<string> set)
+void BpTree::Insert(int key, set<string> set)
 {
-
-    return true;
 }
 
 BpTreeNode *BpTree::searchDataNode(int n)
@@ -55,21 +53,25 @@ bool BpTree::printRange(string item, int min, int max)
     return true;
 }
 
-void BpTree::printFrequentPatterns(set<string> pFrequentPattern, string item)
+void BpTree::printFrequentPatterns(fstream &flog, set<string> pFrequentPattern, string item)
 {
-    // *fout << "{";
-    // set<string> curPattern = pFrequentPattern;
-    // curPattern.erase(item);
-    // for (set<string>::iterator it = curPattern.begin(); it != curPattern.end();)
-    // {
-    //     string temp = *it++;
-    //     if (temp != item)
-    //         *fout << temp;
-    //     if (it == curPattern.end())
-    //     {
-    //         *fout << "} ";
-    //         break;
-    //     }
-    //     *fout << ", ";
-    // }
+    flog << "{";
+    set<string> curPattern = pFrequentPattern;
+    curPattern.erase(item);
+    for (set<string>::iterator it = curPattern.begin(); it != curPattern.end();)
+    {
+        string temp = *it++;
+        if (temp != item)
+            flog << temp;
+        if (it == curPattern.end())
+        {
+            flog << "} ";
+            break;
+        }
+        flog << ", ";
+    }
+}
+
+bool BpTree::printBPtree(fstream &flog)
+{
 }

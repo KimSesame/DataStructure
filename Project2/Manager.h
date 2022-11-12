@@ -3,6 +3,7 @@
 #include "Error.h"
 #include "FPGrowth.h"
 #include "BpTree.h"
+#include <cstdlib>
 #include <fstream>
 #include <queue>
 using namespace std;
@@ -28,8 +29,10 @@ public:
     }
 
     void LOAD();
+    void BTLOAD();
     void PRINT_ITEMLIST();
     void PRINT_FPTREE();
+    void PRINT_BPTREE();
 };
 
 #include "Manager.hpp"

@@ -4,6 +4,7 @@
 #include "BpTreeIndexNode.h"
 #include <fstream>
 #include <iostream>
+#include <cmath>
 
 class BpTree
 {
@@ -15,7 +16,7 @@ public:
 	~BpTree();
 
 	/* essential */
-	bool Insert(int key, set<string> set);
+	void Insert(int key, set<string> set);
 	bool excessDataNode(BpTreeNode *pDataNode);
 	bool excessIndexNode(BpTreeNode *pIndexNode);
 	void splitDataNode(BpTreeNode *pDataNode);
@@ -23,10 +24,11 @@ public:
 	BpTreeNode *getRoot() { return root; }
 	BpTreeNode *searchDataNode(int n);
 
-	void printFrequentPatterns(set<string> pFrequentPattern, string item);
 	bool printFrequency(string item, int min_frequency);
 	bool printConfidence(string item, double item_frequency, double min_confidence);
 	bool printRange(string item, int min, int max);
+	void printFrequentPatterns(fstream& flog, set<string> pFrequentPattern, string item);
+	bool printBPtree(fstream& flog);
 };
 
 #include "BpTree.hpp"
