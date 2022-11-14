@@ -88,7 +88,7 @@ void Manager::BTLOAD()
     fstream fin("C:/Users/kimbs/repos/Assignments/DataStructure/Project2/result.txt", ios::in);
 
     // Create indexTable
-    if (!fin.is_open() || bptree->getRoot()->getIndexMap()->size() > 0)
+    if (!fin.is_open() || bptree->getRoot() != nullptr)
     {
         flog << "========BTLOAD========" << endl;
         flog << "ERROR " << ErrorCode::LOAD_ERR << endl;
@@ -153,7 +153,9 @@ void Manager::PRINT_BPTREE(string param)
     min_freq = param;
 
     flog << "========PRINT_BPTREE========" << endl;
-    if ((item.empty() || min_freq.empty()) || !bptree->printBPtree(flog, item, atoi(min_freq.c_str())))
+    if (item.empty() || min_freq.empty())
+        flog << "ERROR " << ErrorCode::PRINT_BPTREE_ERR << endl;
+    else if(!bptree->printBPtree(flog, item, atoi(min_freq.c_str())))
         flog << "ERROR " << ErrorCode::PRINT_BPTREE_ERR << endl;
     flog << "============================" << endl;
 

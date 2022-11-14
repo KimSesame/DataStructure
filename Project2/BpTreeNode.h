@@ -29,6 +29,6 @@ public:
 	virtual void insertIndexMap(int n, BpTreeNode *pN) {}
 	virtual void deleteMap(int n) {}
 
-	virtual map<int, BpTreeNode *> *getIndexMap() { return {}; }
-	virtual map<int, FrequentPatternNode *> *getDataMap() { return {}; }
+	virtual map<int, BpTreeNode *> *getIndexMap() { return nullptr; }
+	virtual map<int, FrequentPatternNode *> *getDataMap() { return nullptr; }
 };

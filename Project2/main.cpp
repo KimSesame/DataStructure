@@ -15,13 +15,15 @@ int main(void)
     do
     {
         getline(command_file, line, '\n');
-        command = line.substr(0, line.find_first_of(' '));
+        command = line.substr(0, line.find_first_of('\t'));
         line.erase(0, command.size() + 1);
 
         if (command == "EXIT")
             break;
         else if (command == "LOAD")
             manager.LOAD();
+        else if (command == "BTLOAD")
+            manager.BTLOAD();
         else if (command == "PRINT_ITEMLIST")
             manager.PRINT_ITEMLIST();
         else if (command == "PRINT_FPTREE")
