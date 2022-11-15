@@ -25,8 +25,8 @@ public:
 	BpTreeNode *searchDataNode(int n);
 
 	bool printFrequency(string item, int min_frequency);
-	bool printConfidence(string item, double item_frequency, double min_confidence);
-	bool printRange(string item, int min, int max);
+	bool printConfidence(fstream& flog, string item, double item_frequency, double min_confidence);
+	bool printRange(fstream& flog, string item, int min, int max);
 	bool printFrequentPatterns(fstream& flog, set<string> pFrequentPattern, string item);
 	bool printBPtree(fstream& flog, string item, int min_freq);
 };

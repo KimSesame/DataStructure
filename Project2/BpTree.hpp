@@ -185,7 +185,7 @@ bool BpTree::excessIndexNode(BpTreeNode *pIndexNode)
         return false;
 }
 
-bool BpTree::printConfidence(string item, double item_frequency, double min_confidence)
+bool BpTree::printConfidence(fstream& flog, string item, double item_frequency, double min_confidence)
 {
 
     return true;
@@ -197,9 +197,47 @@ bool BpTree::printFrequency(string item, int min_frequency) // print winratio in
     return true;
 }
 
-bool BpTree::printRange(string item, int min, int max)
+bool BpTree::printRange(fstream& flog, string item, int min, int max)
 {
+    // EMPTY
+    if (root == nullptr)
+        return false;
 
+    // WRONG RANGE
+    if(max < min)
+        return false;
+
+    BpTreeNode *cur_node = root;
+    bool flag_print = false;
+
+    flog << "FrequentPattern\tFrequency" << endl;
+    // Move to head
+    while (cur_node->getMostLeftChild())
+        cur_node = cur_node->getMostLeftChild();
+
+    // Print
+    while (cur_node)
+    {
+        map<int, FrequentPatternNode *> *cur_dataMap = cur_node->getDataMap();
+        map<int, FrequentPatternNode *>::iterator iter = cur_dataMap->begin();
+
+        for (; iter != cur_dataMap->end(); iter++)
+        {
+            if ((min <= (*iter).first) && ((*iter).first) <= max) // in range
+            {
+                multimap<int, set<string>> &patternList = (*iter).second->getList();
+                multimap<int, set<string>>::iterator it = patternList.begin();
+                for (; it != patternList.end(); it++)
+                {
+                    if (printFrequentPatterns(flog, (*it).second, item))
+                        flog << (*iter).first << endl; // frequency
+                }
+                flag_print = true;
+            }
+        }
+        cur_node = cur_node->getNext();
+    }
+    return flag_print;
     return true;
 }
 

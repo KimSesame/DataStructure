@@ -30,6 +30,8 @@ int main(void)
             manager.PRINT_FPTREE();
         else if (command == "PRINT_BPTREE")
             manager.PRINT_BPTREE(line);
+        else if (command == "PRINT_RANGE")
+            manager.PRINT_RANGE(line);
     } while (command != "EXIT");
 
     return 0;

@@ -154,9 +154,31 @@ void Manager::PRINT_BPTREE(string param)
     flog << "========PRINT_BPTREE========" << endl;
     if (item.empty() || min_freq.empty())
         flog << "ERROR " << ErrorCode::PRINT_BPTREE_ERR << endl;
-    else if(!bptree->printBPtree(flog, item, atoi(min_freq.c_str())))
+    else if (!bptree->printBPtree(flog, item, atoi(min_freq.c_str())))
         flog << "ERROR " << ErrorCode::PRINT_BPTREE_ERR << endl;
     flog << "============================" << endl;
+
+    return;
+}
+
+void Manager::PRINT_RANGE(string param)
+{
+    string item;
+    string min;
+    string max;
+
+    item = param.substr(0, param.find_first_of('\t'));
+    param.erase(0, item.size() + 1);
+    min = param.substr(0, param.find_first_of('\t'));
+    param.erase(0, min.size() + 1);
+    max = param;
+
+    flog << "========PRINT_RANGE========" << endl;
+    if (item.empty() || min.empty() || max.empty())
+        flog << "ERROR " << ErrorCode::PRINT_RANGE_ERR << endl;
+    else if (!bptree->printRange(flog, item, atoi(min.c_str()), atoi(max.c_str())))
+        flog << "ERROR " << ErrorCode::PRINT_RANGE_ERR << endl;
+    flog << "===========================" << endl;
 
     return;
 }

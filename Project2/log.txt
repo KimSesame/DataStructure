@@ -190,3 +190,10 @@ FrequentPattern	Frequency
 {spaghetti, green tea} 4
 {soup, green tea} 6
 ============================
+========PRINT_BPTREE========
+FrequentPattern	Frequency
+{body spray, green tea} 3
+{french fries, green tea} 3
+{french fries, soup, green tea} 3
+{spaghetti, green tea} 4
+============================
