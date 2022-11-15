@@ -23,6 +23,7 @@ public:
 
 	void deleteMap(int n)
 	{
+		(*(mapData.find(n))).second = nullptr;
 		mapData.erase(n);
 	}
 	map<int, FrequentPatternNode *> *getDataMap() { return &mapData; }

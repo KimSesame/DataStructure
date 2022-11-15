@@ -61,7 +61,6 @@ void Manager::LOAD()
         root = fpgrowth->getTree();
         while (!pq.empty())
         {
-            // cout << pq.top().second << endl; // test
             fpgrowth->createFPtree(root, pq.top().second);
             root = root->getChildrenNode(pq.top().second);
             pq.pop();

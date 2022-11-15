@@ -15,7 +15,7 @@ void BpTree::Insert(int key, set<string> set)
 
     BpTreeNode *cur_node = root;
     // Move through indexNode
-    while (cur_node->getIndexMap()) // cur_node->getIndexMap()->size() > 0
+    while (cur_node->getIndexMap())
     {
         map<int, BpTreeNode *> *cur_indexMap = cur_node->getIndexMap();
         map<int, BpTreeNode *>::reverse_iterator iiter = cur_indexMap->rbegin();
@@ -46,6 +46,7 @@ void BpTree::Insert(int key, set<string> set)
     // Insert
     new_fqp_node->InsertList(set);
     cur_node->insertDataMap(key, new_fqp_node);
+    // Link
 
     // Inspect with order
     if (excessDataNode(cur_node))
@@ -72,18 +73,24 @@ void BpTree::splitDataNode(BpTreeNode *pDataNode)
 {
     BpTreeDataNode *newDataNode = new BpTreeDataNode;
     map<int, FrequentPatternNode *> *cur_dataMap = pDataNode->getDataMap();
-    map<int, FrequentPatternNode *>::iterator diter = cur_dataMap->begin();
-    int idx = 0; // index of cur_dataMap
+    map<int, FrequentPatternNode *>::iterator diter;
+    int split = ceil((order - 1) / 2.0); // index of starting split
+    int idx = 0;                         // index of cur_dataMap
 
     // Split dataNode
-    for (; diter != cur_dataMap->end(); diter++)
+    while (cur_dataMap->size() > split)
     {
-        if (idx >= ceil((order - 1) / 2.0)) // ceil((order-1)/2.0)  :  index of starting split
+        for (diter = cur_dataMap->begin(); diter != cur_dataMap->end(); diter++)
         {
-            newDataNode->insertDataMap((*diter).first, (*diter).second);
-            pDataNode->deleteMap((*diter).first); // IF ERROR USE TWO FOR LOOP
+            if (idx == split)
+            {
+                newDataNode->insertDataMap((*diter).first, (*diter).second);
+                pDataNode->deleteMap((*diter).first);
+                break;
+            }
+            idx++;
         }
-        idx++;
+        idx = 0;
     }
 
     // Link dataNodes
@@ -92,7 +99,7 @@ void BpTree::splitDataNode(BpTreeNode *pDataNode)
 
     // Inspect existing indexNode
     // if NOT exist
-    if (pDataNode->getParent() == root) // Create superIndexNode
+    if (pDataNode == root) // Create superIndexNode
     {
         BpTreeIndexNode *superIndexNode = new BpTreeIndexNode;
         superIndexNode->setMostLeftChild(pDataNode);
@@ -114,42 +121,49 @@ void BpTree::splitIndexNode(BpTreeNode *pIndexNode)
     BpTreeIndexNode *newIndexNode = new BpTreeIndexNode;
     map<int, BpTreeNode *> *cur_indexMap = pIndexNode->getIndexMap();
     map<int, BpTreeNode *>::iterator iiter = cur_indexMap->begin();
-    map<int, BpTreeNode *>::iterator titer;
-    int idx = 0; // index of cur_indexMap
+    int split = ceil((order - 1) / 2.0); // index of starting split
+    int idx = 0;                         // index of cur_indexMap
+    bool link_flag = false;
 
     // Split indexNode
-    for (; iiter != cur_indexMap->end(); iiter++)
+    while (cur_indexMap->size() > split)
     {
-        if (idx == ceil((order - 1) / 2.0)) // ceil((order-1)/2.0)  :  index of starting split
+        for (iiter = cur_indexMap->begin(); iiter != cur_indexMap->end(); iiter++)
         {
-            titer = iiter;
-            pIndexNode->deleteMap((*iiter).first); // IF ERROR USE TWO FOR LOOP
+            if (idx == split)
+            {
+                if (!link_flag) // link first element of newIndexNode
+                {
+                    newIndexNode->setMostLeftChild((*iiter).second);
+                    pIndexNode->deleteMap((*iiter).first);
+                    link_flag = true;
+                }
+                else
+                {
+                    newIndexNode->insertIndexMap((*iiter).first, (*iiter).second);
+                    pIndexNode->deleteMap((*iiter).first);
+                }
+                break;
+            }
+            idx++;
         }
-        else if (idx > ceil((order - 1) / 2.0))
-        {
-            newIndexNode->insertIndexMap((*iiter).first, (*iiter).second);
-            pIndexNode->deleteMap((*iiter).first); // IF ERROR USE TWO FOR LOOP
-        }
-        idx++;
+        idx = 0;
     }
-
-    // Link
-    newIndexNode->setMostLeftChild((*titer).second);
 
     // Inspect existing indexNode
     // if NOT exist
-    if (pIndexNode->getParent() == root) // Create superIndexNode
+    if (pIndexNode == root) // Create superIndexNode
     {
-        BpTreeIndexNode *superIndexNode;
+        BpTreeIndexNode *superIndexNode = new BpTreeIndexNode;
         superIndexNode->setMostLeftChild(pIndexNode);
-        superIndexNode->insertIndexMap((*titer).first, newIndexNode);
+        superIndexNode->insertIndexMap((*(newIndexNode->getIndexMap()->begin())).first, newIndexNode);
         pIndexNode->setParent(superIndexNode);
         newIndexNode->setParent(superIndexNode);
         root = superIndexNode;
     }
     else // if exist, insert at indexMap
     {
-        pIndexNode->getParent()->insertIndexMap((*titer).first, newIndexNode);
+        pIndexNode->getParent()->insertIndexMap((*(newIndexNode->getIndexMap()->begin())).first, newIndexNode);
         newIndexNode->setParent(pIndexNode->getParent());
     }
     return;
@@ -189,23 +203,20 @@ bool BpTree::printRange(string item, int min, int max)
     return true;
 }
 
-void BpTree::printFrequentPatterns(fstream &flog, set<string> pFrequentPattern, string item)
+bool BpTree::printFrequentPatterns(fstream &flog, set<string> pFrequentPattern, string item)
 {
+    if (pFrequentPattern.find(item) == pFrequentPattern.end())
+        return false;
+
     flog << "{";
-    set<string> curPattern = pFrequentPattern;
-    curPattern.erase(item);
-    for (set<string>::iterator it = curPattern.begin(); it != curPattern.end();)
+    for (set<string>::iterator iter = pFrequentPattern.begin(); iter != pFrequentPattern.end(); iter++)
     {
-        string temp = *it++;
-        if (temp != item)
-            flog << temp;
-        if (it == curPattern.end())
-        {
-            flog << "} ";
-            break;
-        }
-        flog << ", ";
+        if (*iter == item)
+            continue;
+        flog << *iter << ", ";
     }
+    flog << item << "} ";
+    return true;
 }
 
 bool BpTree::printBPtree(fstream &flog, string item, int min_freq)
@@ -222,24 +233,27 @@ bool BpTree::printBPtree(fstream &flog, string item, int min_freq)
     while (cur_node->getMostLeftChild())
         cur_node = cur_node->getMostLeftChild();
 
-    // Print if greater than min_frequency
-    while (cur_node->getNext())
+    // Print
+    while (cur_node)
     {
         map<int, FrequentPatternNode *> *cur_dataMap = cur_node->getDataMap();
         map<int, FrequentPatternNode *>::iterator iter = cur_dataMap->begin();
 
         for (; iter != cur_dataMap->end(); iter++)
         {
-            if ((*iter).first > min_freq)
+            if ((*iter).first >= min_freq) // greater than min_frequency
             {
-                for (multimap<int, set<string>>::iterator it = (*iter).second->getList().begin(); it != (*iter).second->getList().end(); it++)
+                multimap<int, set<string>> &patternList = (*iter).second->getList();
+                multimap<int, set<string>>::iterator it = patternList.begin();
+                for (; it != patternList.end(); it++)
                 {
-                    printFrequentPatterns(flog, (*it).second, item);
-                    flog << (*iter).first << endl;
+                    if (printFrequentPatterns(flog, (*it).second, item))
+                        flog << (*iter).first << endl; // frequency
                 }
                 flag_print = true;
             }
         }
+        cur_node = cur_node->getNext();
     }
     return flag_print;
 }
