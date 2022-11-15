@@ -192,33 +192,33 @@ FrequentPattern	Frequency
 ============================
 ========PRINT_CONFIDENCE========
 FrequentPattern	Frequency	Confidence
-{black tea, mineral water} 2 0.285714
-{chicken, mineral water} 2 0.285714
-{eggs, mineral water} 2 0.285714
-{energy bar, mineral water} 2 0.285714
-{escalope, mineral water} 2 0.285714
-{fresh tuna, mineral water} 2 0.285714
-{frozen smoothie, mineral water} 2 0.285714
-{green tea, mineral water} 2 0.285714
-{ground beef, mineral water} 2 0.285714
-{milk, mineral water} 2 0.285714
-{salmon, mineral water} 2 0.285714
-{soup, mineral water} 2 0.285714
-{whole wheat rice, mineral water} 2 0.285714
-{black tea, salmon, mineral water} 2 0.285714
-{black tea, spaghetti, mineral water} 2 0.285714
-{chicken, eggs, mineral water} 2 0.285714
-{energy bar, milk, mineral water} 2 0.285714
-{escalope, frozen smoothie, mineral water} 2 0.285714
-{escalope, spaghetti, mineral water} 2 0.285714
-{fresh tuna, spaghetti, mineral water} 2 0.285714
-{frozen smoothie, spaghetti, mineral water} 2 0.285714
-{ground beef, spaghetti, mineral water} 2 0.285714
-{salmon, spaghetti, mineral water} 2 0.285714
-{black tea, salmon, spaghetti, mineral water} 2 0.285714
-{escalope, frozen smoothie, spaghetti, mineral water} 2 0.285714
 {spaghetti, mineral water} 5 0.714286
 ================================
+========PRINT_CONFIDENCE========
+FrequentPattern	Frequency	Confidence
+{eggs, chocolate} 3 0.6
+{eggs, soup, chocolate} 3 0.6
+{soup, chocolate} 4 0.8
+================================
+========PRINT_RANGE========
+FrequentPattern	Frequency
+{brownies, green tea} 2
+{burgers, green tea} 2
+{chocolate, green tea} 2
+{milk, green tea} 2
+{mineral water, green tea} 2
+{pancakes, green tea} 2
+{body spray, pancakes, green tea} 2
+{body spray, soup, green tea} 2
+{burgers, french fries, green tea} 2
+{burgers, soup, green tea} 2
+{chocolate, spaghetti, green tea} 2
+{soup, spaghetti, green tea} 2
+{burgers, french fries, soup, green tea} 2
+{body spray, green tea} 3
+{french fries, green tea} 3
+{french fries, soup, green tea} 3
+===========================
 ========PRINT_RANGE========
 FrequentPattern	Frequency
 {body spray, green tea} 3

@@ -173,7 +173,7 @@ void Manager::PRINT_CONFIDENCE(string param)
     flog << "========PRINT_CONFIDENCE========" << endl;
     if (item.empty() || min_conf.empty())
         flog << "ERROR " << ErrorCode::PRINT_CONFIDENCE_ERR << endl;
-    else if (!bptree->printConfidence(flog, item, fpgrowth->getHeaderTable()->find_frequency(item), atol(min_conf.c_str())))
+    else if (!bptree->printConfidence(flog, item, fpgrowth->getHeaderTable()->find_frequency(item), atof(min_conf.c_str())))
         flog << "ERROR " << ErrorCode::PRINT_CONFIDENCE_ERR << endl;
     flog << "================================" << endl;
 
