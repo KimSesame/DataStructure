@@ -33,6 +33,7 @@ public:
     void PRINT_ITEMLIST();
     void PRINT_FPTREE();
     void PRINT_BPTREE(string param);
+    void PRINT_CONFIDENCE(string param);
     void PRINT_RANGE(string param);
 };
 

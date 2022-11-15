@@ -161,6 +161,25 @@ void Manager::PRINT_BPTREE(string param)
     return;
 }
 
+void Manager::PRINT_CONFIDENCE(string param)
+{
+    string item;
+    string min_conf;
+
+    item = param.substr(0, param.find_first_of('\t'));
+    param.erase(0, item.size() + 1);
+    min_conf = param;
+
+    flog << "========PRINT_CONFIDENCE========" << endl;
+    if (item.empty() || min_conf.empty())
+        flog << "ERROR " << ErrorCode::PRINT_CONFIDENCE_ERR << endl;
+    else if (!bptree->printConfidence(flog, item, fpgrowth->getHeaderTable()->find_frequency(item), atol(min_conf.c_str())))
+        flog << "ERROR " << ErrorCode::PRINT_CONFIDENCE_ERR << endl;
+    flog << "================================" << endl;
+
+    return;
+}
+
 void Manager::PRINT_RANGE(string param)
 {
     string item;

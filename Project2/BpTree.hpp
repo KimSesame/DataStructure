@@ -185,10 +185,48 @@ bool BpTree::excessIndexNode(BpTreeNode *pIndexNode)
         return false;
 }
 
-bool BpTree::printConfidence(fstream& flog, string item, double item_frequency, double min_confidence)
+bool BpTree::printConfidence(fstream &flog, string item, double item_frequency, double min_confidence)
 {
+    // EMPTY
+    if (root == nullptr)
+        return false;
 
-    return true;
+    BpTreeNode *cur_node = root;
+    double confidence;
+    bool flag_print = false;
+
+    flog << "FrequentPattern\tFrequency\tConfidence" << endl;
+    // Move to head
+    while (cur_node->getMostLeftChild())
+        cur_node = cur_node->getMostLeftChild();
+
+    // Print
+    while (cur_node)
+    {
+        map<int, FrequentPatternNode *> *cur_dataMap = cur_node->getDataMap();
+        map<int, FrequentPatternNode *>::iterator iter = cur_dataMap->begin();
+
+        for (; iter != cur_dataMap->end(); iter++)
+        {
+            confidence = (*iter).first / item_frequency;
+            if (confidence >= min_confidence) // greater than min_confidence
+            {
+                multimap<int, set<string>> &patternList = (*iter).second->getList();
+                multimap<int, set<string>>::iterator it = patternList.begin();
+                for (; it != patternList.end(); it++)
+                {
+                    if (printFrequentPatterns(flog, (*it).second, item))
+                    {
+                        flog << (*iter).first << " "; // frequency
+                        flog << confidence << endl;   // confidence
+                    }
+                }
+                flag_print = true;
+            }
+        }
+        cur_node = cur_node->getNext();
+    }
+    return flag_print;
 }
 
 bool BpTree::printFrequency(string item, int min_frequency) // print winratio in ascending order
@@ -197,14 +235,14 @@ bool BpTree::printFrequency(string item, int min_frequency) // print winratio in
     return true;
 }
 
-bool BpTree::printRange(fstream& flog, string item, int min, int max)
+bool BpTree::printRange(fstream &flog, string item, int min, int max)
 {
     // EMPTY
     if (root == nullptr)
         return false;
 
     // WRONG RANGE
-    if(max < min)
+    if (max < min)
         return false;
 
     BpTreeNode *cur_node = root;
