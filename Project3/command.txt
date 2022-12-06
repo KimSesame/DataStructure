@@ -1,5 +1,5 @@
 LOAD graph_L.txt
-CHECK
+PRINT
 LOAD graph_M.txt
-CHECK
+PRINT
 EXIT

@@ -81,8 +81,14 @@ void Manager::LOAD(string file_name)
     return;
 }
 
-// // // // // // // // // // // // // // // // // // // //
-void Manager::CHECK()
+void Manager::PRINT()
 {
-    graph->printGraph();
+    flog << "========PRINT========" << endl;
+    if(graph == nullptr)
+        flog << ErrorCode::PRINT_ERR << endl;
+    else
+        graph->printGraph(flog);
+    flog << "=====================" << endl;
 }
+
+// // // // // // // // // // // // // // // // // // // //

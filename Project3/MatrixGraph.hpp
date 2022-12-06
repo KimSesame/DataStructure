@@ -28,28 +28,25 @@ void MatrixGraph::insertEdge(int from, int to, int weight)
 	m_Mat[from][to] = weight;
 }
 
-bool MatrixGraph::printGraph()
+void MatrixGraph::printGraph(fstream& flog)
 {
 	if (m_Size < 0)
-		return 0;
+		return;
 
-	cout << "Graph is MatrixGraph!" << endl;
-
-	cout << '\t';
+	flog << '\t';
 	for (int i = 0; i < m_Size; i++)
 	{
-		cout << "[" << i << "]" << '\t';
+		flog << "[" << i << "]" << '\t';
 	}
-	cout << endl;
+	flog << endl;
 
 	for (int i = 0; i < m_Size; i++)
 	{
-		cout << "[" << i << "]";
-		for (int j = 0; j < m_Size && cout << '\t'; j++)
+		flog << "[" << i << "]";
+		for (int j = 0; j < m_Size && flog << '\t'; j++)
 		{
-			cout << m_Mat[i][j];
+			flog << m_Mat[i][j];
 		}
-		cout << endl;
+		flog << endl;
 	}
-	return 1;
 }

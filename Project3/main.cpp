@@ -22,9 +22,9 @@ int main(void)
             break;
         else if (command == "LOAD")
             manager.LOAD(line);
+        else if (command == "PRINT")
+            manager.PRINT();
         // // // // // // // // // //
-        else if (command == "CHECK")
-            manager.CHECK();
     } while (command != "EXIT");
 
     return 0;

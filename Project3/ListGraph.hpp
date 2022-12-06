@@ -19,19 +19,14 @@ void ListGraph::insertEdge(int from, int to, int weight)
 	m_List[from].insert(make_pair(to, weight));
 }
 
-// when make PRINT method, need sort in ascending order
-bool ListGraph::printGraph()
+void ListGraph::printGraph(fstream& flog)
 {
-	cout << "Graph is ListGraph!" << endl;
-
 	for (int i = 0; i < m_Size; i++)
 	{
-		cout << "[" << i << "]";
+		flog << "[" << i << "]";
 
-		for (auto it_ = m_List[i].begin(); it_ != m_List[i].end() && cout << " -> "; it_++)
-			cout << "(" << it_->first << "," << it_->second << ")";
-		cout << endl;
+		for (auto it_ = m_List[i].begin(); it_ != m_List[i].end() && flog << " -> "; it_++)
+			flog << "(" << it_->first << "," << it_->second << ")";
+		flog << endl;
 	}
-	cout << endl;
-	return 1;
 }

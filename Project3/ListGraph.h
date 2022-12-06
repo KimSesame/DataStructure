@@ -12,7 +12,7 @@ public:
 		
 	void getAdjacentEdges(int vertex, map<int, int>* m);
 	void insertEdge(int from, int to, int weight);
-	bool printGraph();
+	void printGraph(fstream& flog);
 };
 
 #include "ListGraph.hpp"

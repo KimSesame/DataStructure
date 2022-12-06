@@ -24,9 +24,9 @@ public:
     }
 
     void LOAD(string line);
+    void PRINT();
 
     // // // // // // // // 
-    void CHECK();
 };
 
 #include "Manager.hpp"
