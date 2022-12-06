@@ -1,0 +1,5 @@
+LOAD graph_L.txt
+CHECK
+LOAD graph_M.txt
+CHECK
+EXIT
