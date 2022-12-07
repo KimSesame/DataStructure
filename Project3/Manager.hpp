@@ -84,11 +84,28 @@ void Manager::LOAD(string file_name)
 void Manager::PRINT()
 {
     flog << "========PRINT========" << endl;
-    if(graph == nullptr)
+    if (graph == nullptr)
         flog << ErrorCode::PRINT_ERR << endl;
     else
         graph->printGraph(flog);
     flog << "=====================" << endl;
+}
+
+void Manager::mBFS(string vertex)
+{
+    flog << "========BFS========" << endl;
+
+    // Exceptions
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    {
+        flog << ErrorCode::BFS_ERR << endl;
+        flog << "===================" << endl;
+        return;
+    }
+
+    int start = atoi(vertex.c_str());
+    BFS(flog, graph, start);
+    flog << "===================" << endl;
 }
 
 // // // // // // // // // // // // // // // // // // // //

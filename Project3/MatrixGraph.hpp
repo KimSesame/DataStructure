@@ -19,8 +19,22 @@ MatrixGraph::~MatrixGraph()
 	delete[] m_Mat;
 }
 
-void MatrixGraph::getAdjacentEdges(int vertex, map<int, int> *m)
+vector<int> *MatrixGraph::getAdjacentEdges(int vertex)
 {
+	vector<int> *adjacent_nodes = new vector<int>;
+
+	// Append vertex is start position
+	for (int j = 0; j < m_Size; j++)
+		if(m_Mat[vertex][j])
+			adjacent_nodes->push_back(j);
+
+	// Append vertex is end position
+	for (int i = 0; i < m_Size; i++)
+		if(m_Mat[i][vertex])
+			adjacent_nodes->push_back(i);
+
+	sort(adjacent_nodes->begin(), adjacent_nodes->end());
+	return adjacent_nodes;
 }
 
 void MatrixGraph::insertEdge(int from, int to, int weight)
@@ -28,7 +42,7 @@ void MatrixGraph::insertEdge(int from, int to, int weight)
 	m_Mat[from][to] = weight;
 }
 
-void MatrixGraph::printGraph(fstream& flog)
+void MatrixGraph::printGraph(fstream &flog)
 {
 	if (m_Size < 0)
 		return;

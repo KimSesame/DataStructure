@@ -24,6 +24,8 @@ int main(void)
             manager.LOAD(line);
         else if (command == "PRINT")
             manager.PRINT();
+        else if (command == "BFS")
+            manager.mBFS(line);
         // // // // // // // // // //
     } while (command != "EXIT");
 
