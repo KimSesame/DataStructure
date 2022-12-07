@@ -23,7 +23,7 @@ vector<int> *ListGraph::getAdjacentEdges(int vertex)
 	for (int i = 0; i < m_Size; i++)
 		for (auto vw : m_List[i])
 			if (vw.first == vertex)
-				adjacent_nodes->push_back(vw.first);
+				adjacent_nodes->push_back(i);
 	
 	sort(adjacent_nodes->begin(), adjacent_nodes->end());
 	return adjacent_nodes;
