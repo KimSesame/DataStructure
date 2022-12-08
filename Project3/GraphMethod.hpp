@@ -15,15 +15,15 @@ bool BFS(fstream &flog, Graph *graph, int vertex)
     q.push(vertex);
     while (!q.empty())
     {
-        vector<int> *adj_nodes = graph->getAdjacentEdges(q.front());
+        map<int, int> *adj_edges = graph->getAdjacentEdges(q.front());
         path.push_back(q.front()); // append at path
         q.pop();
-        for (auto adj_node : *adj_nodes)
+        for (auto adj_edge : *adj_edges)
         {
-            if (visit_table[adj_node] == false)
+            if (visit_table[adj_edge.first] == false)
             {
-                (*visit_table.find(adj_node)).second = true; // mark visited
-                q.push(adj_node);
+                (*visit_table.find(adj_edge.first)).second = true; // mark visited
+                q.push(adj_edge.first);
             }
         }
     }
@@ -57,17 +57,17 @@ bool DFS(fstream &flog, Graph *graph, int vertex)
     while (!s.empty())
     {
         int cur_node = s.top();
-        vector<int> *adj_nodes = graph->getAdjacentEdges(cur_node);
+        map<int, int> *adj_edges = graph->getAdjacentEdges(cur_node);
         s.pop();
 
-        for (auto adj_node : *adj_nodes)
+        for (auto adj_edge : *adj_edges)
         {
-            if (visit_table[adj_node] == false)
+            if (visit_table[adj_edge.first] == false)
             {
-                (*visit_table.find(adj_node)).second = true; // mark visited
-                path.push_back(adj_node);
+                (*visit_table.find(adj_edge.first)).second = true; // mark visited
+                path.push_back(adj_edge.first);
                 s.push(cur_node);
-                s.push(adj_node);
+                s.push(adj_edge.first);
                 break;
             }
         }
@@ -109,20 +109,20 @@ bool DFS_R(fstream &flog, Graph *graph, int vertex)
 
 vector<int> *DFS_R(fstream &flog, Graph *graph, int vertex, map<int, bool> *visit_table, vector<int> *path)
 {
-    vector<int> *adj_nodes = graph->getAdjacentEdges(vertex);
+    map<int, int> *adj_edges = graph->getAdjacentEdges(vertex);
 
     (*visit_table).at(vertex) = true;
     (*path).push_back(vertex);
-    for (auto adj_node : *adj_nodes)
-        if (!(*visit_table)[adj_node])
-            DFS_R(flog, graph, adj_node, visit_table, path);
+    for (auto adj_edge : *adj_edges)
+        if (!(*visit_table)[adj_edge.first])
+            DFS_R(flog, graph, adj_edge.first, visit_table, path);
     return path;
 }
 
-// bool Kruskal(Graph* graph)
-// {
+bool Kruskal(Graph* graph)
+{
 
-// }
+}
 
 // bool Dijkstra(Graph* graph, int vertex)
 // {

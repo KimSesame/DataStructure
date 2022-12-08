@@ -30,6 +30,8 @@ int main(void)
             manager.mDFS(line);
         else if (command == "DFS_R")
             manager.mDFS_R(line);
+        else if (command == "KRUSKAL")
+            manager.mKRUSKAL();
         // // // // // // // // // //
     } while (command != "EXIT");
 

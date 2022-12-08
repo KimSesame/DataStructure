@@ -10,7 +10,7 @@ public:
 	MatrixGraph(bool type, int size);
 	~MatrixGraph();	
 		
-	vector<int>* getAdjacentEdges(int vertex);
+	map<int, int>* getAdjacentEdges(int vertex);
 	void insertEdge(int from, int to, int weight);
 	void printGraph(fstream& flog);
 };

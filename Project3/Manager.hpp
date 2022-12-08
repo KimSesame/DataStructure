@@ -123,7 +123,6 @@ void Manager::mDFS(string vertex)
     int start = atoi(vertex.c_str());
     DFS(flog, graph, start);
     flog << "===================" << endl;
-
 }
 
 void Manager::mDFS_R(string vertex)
@@ -141,7 +140,10 @@ void Manager::mDFS_R(string vertex)
     int start = atoi(vertex.c_str());
     DFS_R(flog, graph, start);
     flog << "=====================" << endl;
+}
 
+void Manager::mKRUSKAL()
+{
 }
 
 // // // // // // // // // // // // // // // // // // // //

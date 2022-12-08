@@ -19,22 +19,24 @@ MatrixGraph::~MatrixGraph()
 	delete[] m_Mat;
 }
 
-vector<int> *MatrixGraph::getAdjacentEdges(int vertex)
+map<int, int> *MatrixGraph::getAdjacentEdges(int vertex)
 {
-	vector<int> *adjacent_nodes = new vector<int>;
+	map<int, int> *adjacent_edges = new map<int, int>;
 
 	// Append vertex is start position
 	for (int j = 0; j < m_Size; j++)
-		if(m_Mat[vertex][j])
-			adjacent_nodes->push_back(j);
+		if (m_Mat[vertex][j])
+			adjacent_edges->insert(make_pair(j, m_Mat[vertex][j]));
 
 	// Append vertex is end position
 	for (int i = 0; i < m_Size; i++)
-		if(m_Mat[i][vertex])
-			adjacent_nodes->push_back(i);
+		if (m_Mat[i][vertex])
+			if (adjacent_edges->find(i) == adjacent_edges->end())
+				adjacent_edges->insert(make_pair(i, m_Mat[i][vertex]));
+			else if (m_Mat[i][vertex] < adjacent_edges->at(i))
+				adjacent_edges->at(i) = m_Mat[i][vertex];
 
-	sort(adjacent_nodes->begin(), adjacent_nodes->end());
-	return adjacent_nodes;
+	return adjacent_edges;
 }
 
 void MatrixGraph::insertEdge(int from, int to, int weight)

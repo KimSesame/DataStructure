@@ -30,7 +30,7 @@ public:
 	bool getType();
 	int getSize();
 
-	virtual vector<int>* getAdjacentEdges(int vertex) = 0;
+	virtual map<int, int>* getAdjacentEdges(int vertex) = 0;
 	virtual void insertEdge(int from, int to, int weight) = 0;
 	virtual void printGraph(fstream& flog) = 0;
 };
