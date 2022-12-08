@@ -27,9 +27,6 @@ map<int, int> *ListGraph::getAdjacentEdges(int vertex)
 					adjacent_edges->insert(make_pair(i, vw.second));
 				else if (vw.second < adjacent_edges->at(vw.first))
 					adjacent_edges->at(vw.first) = vw.second;
-	// test
-	cout << vertex << ": " << adjacent_edges->size() << endl;
-	//
 	return adjacent_edges;
 }
 
