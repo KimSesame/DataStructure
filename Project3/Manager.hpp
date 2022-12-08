@@ -144,6 +144,9 @@ void Manager::mDFS_R(string vertex)
 
 void Manager::mKRUSKAL()
 {
+    flog << "========Kruskal========" << endl;
+    
+    flog << "=======================" << endl;
 }
 
 // // // // // // // // // // // // // // // // // // // //

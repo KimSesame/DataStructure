@@ -119,9 +119,8 @@ vector<int> *DFS_R(fstream &flog, Graph *graph, int vertex, map<int, bool> *visi
     return path;
 }
 
-bool Kruskal(Graph* graph)
+bool Kruskal(fstream &flog, Graph *graph)
 {
-
 }
 
 // bool Dijkstra(Graph* graph, int vertex)
