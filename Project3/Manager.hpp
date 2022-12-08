@@ -108,4 +108,22 @@ void Manager::mBFS(string vertex)
     flog << "===================" << endl;
 }
 
+void Manager::mDFS(string vertex)
+{
+    flog << "========DFS========" << endl;
+
+    // Exceptions
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    {
+        flog << ErrorCode::DFS_ERR << endl;
+        flog << "===================" << endl;
+        return;
+    }
+
+    int start = atoi(vertex.c_str());
+    DFS(flog, graph, start);
+    flog << "===================" << endl;
+
+}
+
 // // // // // // // // // // // // // // // // // // // //

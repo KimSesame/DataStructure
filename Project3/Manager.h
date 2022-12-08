@@ -26,6 +26,7 @@ public:
     void LOAD(string line);
     void PRINT();
     void mBFS(string vertex);
+    void mDFS(string vertex);
 
     // // // // // // // // 
 };

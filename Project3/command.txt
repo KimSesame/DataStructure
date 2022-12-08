@@ -1,6 +1,9 @@
+LOAD graph_L.txt
+PRINT
+BFS 0
+DFS 0
 LOAD graph_M.txt
 PRINT
 BFS 0
-BFS 2
-BFS 4
+DFS 0
 EXIT
