@@ -28,6 +28,8 @@ int main(void)
             manager.mBFS(line);
         else if (command == "DFS")
             manager.mDFS(line);
+        else if (command == "DFS_R")
+            manager.mDFS_R(line);
         // // // // // // // // // //
     } while (command != "EXIT");
 

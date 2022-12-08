@@ -27,6 +27,7 @@ public:
     void PRINT();
     void mBFS(string vertex);
     void mDFS(string vertex);
+    void mDFS_R(string vertex);
 
     // // // // // // // // 
 };

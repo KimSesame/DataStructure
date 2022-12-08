@@ -6,7 +6,8 @@
 
 bool BFS(fstream& flog, Graph* graph, int vertex);
 bool DFS(fstream& flog, Graph* graph, int vertex);
-bool DFS_R(Graph* graph, vector<bool>* visit, int vertex);
+bool DFS_R(fstream& flog, Graph* graph, int vertex);
+vector<int>* DFS_R(fstream& flog, Graph* graph, int vertex, map<int, bool>* visit_table, vector<int>* path);
 bool Kruskal(Graph* graph);
 bool Dijkstra(Graph* graph, int vertex);
 bool Bellmanford(Graph* graph, int s_vertex, int e_vertex);

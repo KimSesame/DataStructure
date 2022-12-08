@@ -85,10 +85,39 @@ bool DFS(fstream &flog, Graph *graph, int vertex)
     return true;
 }
 
-// bool DFS_R(Graph* graph, vector<bool>* visit, int vertex)
-// {
+bool DFS_R(fstream &flog, Graph *graph, int vertex)
+{
+    map<int, bool> *visit_table = new map<int, bool>;
+    vector<int> *path = new vector<int>;
 
-// }
+    // Initialize visit table
+    for (int i = 0; i < graph->getSize(); i++)
+        (*visit_table).insert(make_pair(i, false));
+
+    // Print path
+    path = DFS_R(flog, graph, vertex, visit_table, path);
+    auto iter = (*path).begin();
+
+    flog << "startvertex: " << vertex << endl;
+    flog << *iter++;
+    for (; iter != (*path).end(); iter++)
+        flog << " -> " << *iter;
+    flog << endl;
+
+    return true;
+}
+
+vector<int> *DFS_R(fstream &flog, Graph *graph, int vertex, map<int, bool> *visit_table, vector<int> *path)
+{
+    vector<int> *adj_nodes = graph->getAdjacentEdges(vertex);
+
+    (*visit_table).at(vertex) = true;
+    (*path).push_back(vertex);
+    for (auto adj_node : *adj_nodes)
+        if (!(*visit_table)[adj_node])
+            DFS_R(flog, graph, adj_node, visit_table, path);
+    return path;
+}
 
 // bool Kruskal(Graph* graph)
 // {

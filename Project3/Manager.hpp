@@ -126,4 +126,22 @@ void Manager::mDFS(string vertex)
 
 }
 
+void Manager::mDFS_R(string vertex)
+{
+    flog << "========DFS_R========" << endl;
+
+    // Exceptions
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    {
+        flog << ErrorCode::DFS_R_ERR << endl;
+        flog << "=====================" << endl;
+        return;
+    }
+
+    int start = atoi(vertex.c_str());
+    DFS_R(flog, graph, start);
+    flog << "=====================" << endl;
+
+}
+
 // // // // // // // // // // // // // // // // // // // //
