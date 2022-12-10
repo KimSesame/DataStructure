@@ -121,12 +121,81 @@ vector<int> *DFS_R(fstream &flog, Graph *graph, int vertex, map<int, bool> *visi
 
 bool Kruskal(fstream &flog, Graph *graph)
 {
+    return true;
 }
 
-// bool Dijkstra(Graph* graph, int vertex)
-// {
+bool Dijkstra(fstream &flog, Graph *graph, int vertex)
+{
+    vector<int> distance;
+    vector<int> visit_table;
+    vector<int> path_table;
 
-// }
+    // Init tables
+    for (int i = 0; i < graph->getSize(); i++)
+        distance.push_back(MAX);
+    distance[vertex] = 0;
+
+    for (int i = 0; i < graph->getSize(); i++)
+        visit_table.push_back(false);
+
+    for (int i = 0; i < graph->getSize(); i++)
+        path_table.push_back(-1);
+
+    // Search
+    int cur_node = vertex;
+    visit_table[vertex] = true;
+    while (accumulate(visit_table.begin(), visit_table.end(), 0) != visit_table.size())
+    {
+        map<int, int> *adjacent_edges = graph->getAdjacentEdges(cur_node, 1);
+
+        // Update min distance
+        for (auto adj_edge : *adjacent_edges)
+            if (((distance[cur_node] != MAX) ? distance[cur_node] : 0) + adj_edge.second < distance[adj_edge.first])
+            {
+                path_table[adj_edge.first] = cur_node;
+                distance[adj_edge.first] = ((distance[cur_node] != MAX) ? distance[cur_node] : 0) + adj_edge.second;
+            }
+
+        cur_node = getMinIdx(distance, visit_table);
+        if (cur_node == -1)
+            break;
+
+        visit_table[cur_node] = true;
+    }
+
+    // Set path
+    flog << "startvertex: " << vertex << endl;
+    for (int i = 0; i < path_table.size(); i++)
+    {
+        if (i == vertex)
+            continue;
+
+        vector<int> rpath;
+        int cur = i;
+        while (path_table[cur] != -1)
+        {
+            rpath.push_back(cur);
+            cur = path_table[cur];
+        }
+        rpath.push_back(cur);
+
+        // Print path
+        flog << "[" << i << "] ";
+        if (cur != vertex)
+        {
+            flog << "x" << endl;
+            continue;
+        }
+
+        auto riter = rpath.rbegin();
+
+        flog << *riter++;
+        for (; riter != rpath.rend(); riter++)
+            flog << " -> " << *riter;
+        flog << " (" << distance[i] << ")" << endl;
+    }
+    return true;
+}
 
 // bool Bellmanford(Graph* graph, int s_vertex, int e_vertex)
 // {

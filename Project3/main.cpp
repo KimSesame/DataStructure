@@ -32,6 +32,8 @@ int main(void)
             manager.mDFS_R(line);
         else if (command == "KRUSKAL")
             manager.mKRUSKAL();
+        else if (command == "DIJKSTRA")
+            manager.mDIJKSTRA(line);
         // // // // // // // // // //
     } while (command != "EXIT");
 

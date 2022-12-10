@@ -10,7 +10,7 @@ public:
 	ListGraph(bool type, int size);
 	~ListGraph();
 		
-	map<int, int>* getAdjacentEdges(int vertex);
+	map<int, int>* getAdjacentEdges(int vertex, int direct);
 	void insertEdge(int from, int to, int weight);
 	void printGraph(fstream& flog);
 };

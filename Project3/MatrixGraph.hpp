@@ -19,7 +19,7 @@ MatrixGraph::~MatrixGraph()
 	delete[] m_Mat;
 }
 
-map<int, int> *MatrixGraph::getAdjacentEdges(int vertex)
+map<int, int> *MatrixGraph::getAdjacentEdges(int vertex, int direct)
 {
 	map<int, int> *adjacent_edges = new map<int, int>;
 
@@ -27,6 +27,9 @@ map<int, int> *MatrixGraph::getAdjacentEdges(int vertex)
 	for (int j = 0; j < m_Size; j++)
 		if (m_Mat[vertex][j])
 			adjacent_edges->insert(make_pair(j, m_Mat[vertex][j]));
+
+	if (direct)
+		return adjacent_edges;
 
 	// Append vertex is end position
 	for (int i = 0; i < m_Size; i++)

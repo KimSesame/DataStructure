@@ -29,6 +29,7 @@ public:
     void mDFS(string vertex);
     void mDFS_R(string vertex);
     void mKRUSKAL();
+    void mDIJKSTRA(string vertex);
 
     // // // // // // // // 
 };

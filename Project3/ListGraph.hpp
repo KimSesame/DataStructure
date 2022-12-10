@@ -10,7 +10,7 @@ ListGraph::~ListGraph()
 	delete[] m_List;
 }
 
-map<int, int> *ListGraph::getAdjacentEdges(int vertex)
+map<int, int> *ListGraph::getAdjacentEdges(int vertex, int direct)
 {
 	map<int, int> *adjacent_edges = new map<int, int>;
 	map<int, int> vmap = m_List[vertex];
@@ -18,6 +18,9 @@ map<int, int> *ListGraph::getAdjacentEdges(int vertex)
 	// Append vertex is start position
 	for (auto vw : vmap)
 		adjacent_edges->insert(make_pair(vw.first, vw.second));
+
+	if (direct)
+		return adjacent_edges;
 
 	// Append vertex is end position
 	for (int i = 0; i < m_Size; i++)

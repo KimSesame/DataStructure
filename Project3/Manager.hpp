@@ -145,8 +145,25 @@ void Manager::mDFS_R(string vertex)
 void Manager::mKRUSKAL()
 {
     flog << "========Kruskal========" << endl;
-    
+
     flog << "=======================" << endl;
+}
+
+void Manager::mDIJKSTRA(string vertex)
+{
+    flog << "========Dijkstra========" << endl;
+    
+    // Exceptions
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    {
+        flog << ErrorCode::DIJKSTRA_ERR << endl;
+        flog << "========================" << endl;
+        return;
+    }
+
+    int start = atoi(vertex.c_str());
+    Dijkstra(flog, graph, start);
+    flog << "========================" << endl;
 }
 
 // // // // // // // // // // // // // // // // // // // //
