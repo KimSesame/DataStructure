@@ -31,6 +31,7 @@ public:
 	int getSize();
 
 	virtual map<int, int>* getAdjacentEdges(int vertex, int direct = 0) = 0;
+	virtual vector<pair<pair<int,int>,int>>* getEdges(void) = 0;
 	virtual void insertEdge(int from, int to, int weight) = 0;
 	virtual void printGraph(fstream& flog) = 0;
 };

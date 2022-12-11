@@ -121,6 +121,54 @@ vector<int> *DFS_R(fstream &flog, Graph *graph, int vertex, map<int, bool> *visi
 
 bool Kruskal(fstream &flog, Graph *graph)
 {
+    vector<pair<pair<int, int>, int>> *edges = graph->getEdges();
+    vector<pair<pair<int, int>, int>> mst_edges;
+    vector<int> set_table;
+
+    // Init set table
+    for (int i = 0; i < graph->getSize(); i++)
+        set_table.push_back(i);
+
+    // Sort by weight in ascending order
+    QuickSort(*edges, 0, edges->size() - 1);
+
+    // Get MST
+    for (auto edge : *edges)
+    {
+        if (accumulate(set_table.begin(), set_table.end(), 0) == 0 || mst_edges.size() == graph->getSize() - 1)
+            break;
+
+        if (Find(set_table, edge.first.first) == Find(set_table, edge.first.second)) // cycle occur if union
+            continue;
+
+        Union(set_table, edge.first.first, edge.first.second);
+        mst_edges.push_back(edge);
+    }
+
+    // Not MST
+    if (mst_edges.size() != graph->getSize() - 1)
+        return false;
+
+    // Get MST cost
+    int cost = 0;
+    for (auto edge : mst_edges)
+        cost += edge.second;
+
+    // Print MST information
+    for (int i = 0; i < graph->getSize(); i++)
+    {
+        flog << "[" << i << "] ";
+        for (auto edge : mst_edges)
+        {
+            if (edge.first.first == i)
+                flog << edge.first.second << "(" << edge.second << ") ";
+            else if (edge.first.second == i)
+                flog << edge.first.first << "(" << edge.second << ") ";
+        }
+        flog << endl;
+    }
+    flog << "cost: " << cost << endl;
+
     return true;
 }
 

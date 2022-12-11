@@ -42,6 +42,28 @@ map<int, int> *MatrixGraph::getAdjacentEdges(int vertex, int direct)
 	return adjacent_edges;
 }
 
+vector<pair<pair<int, int>, int>> *MatrixGraph::getEdges(void)
+{
+	vector<pair<pair<int, int>, int>> *edges = new vector<pair<pair<int, int>, int>>;
+
+	for (int i = 0; i < m_Size; i++)
+	{
+		map<int, int> *adjacnet_edges = getAdjacentEdges(i);
+		for (auto tw : *adjacnet_edges)
+		{
+			if (i < tw.first)
+				edges->push_back(make_pair(make_pair(i, tw.first), tw.second));
+			else
+				edges->push_back(make_pair(make_pair(tw.first, i), tw.second));
+		}
+	}
+	// Eliminate duplication
+	sort(edges->begin(), edges->end());
+	edges->erase(unique(edges->begin(),edges->end()), edges->end());
+
+	return edges;
+}
+
 void MatrixGraph::insertEdge(int from, int to, int weight)
 {
 	m_Mat[from][to] = weight;

@@ -146,13 +146,24 @@ void Manager::mKRUSKAL()
 {
     flog << "========Kruskal========" << endl;
 
+    // Exceptions
+    if (graph == nullptr)
+    {
+        flog << ErrorCode::KRUSKAL_ERR << endl;
+        flog << "=====================" << endl;
+        return;
+    }
+
+    if (!Kruskal(flog, graph))
+        flog << ErrorCode::KRUSKAL_ERR << endl;
+
     flog << "=======================" << endl;
 }
 
 void Manager::mDIJKSTRA(string vertex)
 {
     flog << "========Dijkstra========" << endl;
-    
+
     // Exceptions
     if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
     {

@@ -10,7 +10,8 @@ public:
 	ListGraph(bool type, int size);
 	~ListGraph();
 		
-	map<int, int>* getAdjacentEdges(int vertex, int direct);
+	map<int, int>* getAdjacentEdges(int vertex, int direct = 0);
+	vector<pair<pair<int,int>,int>>* getEdges(void);
 	void insertEdge(int from, int to, int weight);
 	void printGraph(fstream& flog);
 };
