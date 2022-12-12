@@ -23,7 +23,7 @@ int main(void)
         else if (command == "LOAD")
             manager.LOAD(line);
         else if (command == "PRINT")
-            manager.PRINT();
+            manager.PRINT(line);
         else if (command == "BFS")
             manager.mBFS(line);
         else if (command == "DFS")
@@ -31,7 +31,7 @@ int main(void)
         else if (command == "DFS_R")
             manager.mDFS_R(line);
         else if (command == "KRUSKAL")
-            manager.mKRUSKAL();
+            manager.mKRUSKAL(line);
         else if (command == "DIJKSTRA")
             manager.mDIJKSTRA(line);
         // // // // // // // // // //

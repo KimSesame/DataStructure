@@ -24,11 +24,11 @@ public:
     }
 
     void LOAD(string line);
-    void PRINT();
+    void PRINT(string param);
     void mBFS(string vertex);
     void mDFS(string vertex);
     void mDFS_R(string vertex);
-    void mKRUSKAL();
+    void mKRUSKAL(string param);
     void mDIJKSTRA(string vertex);
 
     // // // // // // // // 

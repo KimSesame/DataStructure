@@ -81,10 +81,10 @@ void Manager::LOAD(string file_name)
     return;
 }
 
-void Manager::PRINT()
+void Manager::PRINT(string param)
 {
     flog << "========PRINT========" << endl;
-    if (graph == nullptr)
+    if (graph == nullptr || !param.empty())
         flog << ErrorCode::PRINT_ERR << endl;
     else
         graph->printGraph(flog);
@@ -96,7 +96,7 @@ void Manager::mBFS(string vertex)
     flog << "========BFS========" << endl;
 
     // Exceptions
-    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()) || vertex.find(' ') != vertex.npos)
     {
         flog << ErrorCode::BFS_ERR << endl;
         flog << "===================" << endl;
@@ -113,7 +113,7 @@ void Manager::mDFS(string vertex)
     flog << "========DFS========" << endl;
 
     // Exceptions
-    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()) || vertex.find(' ') != vertex.npos)
     {
         flog << ErrorCode::DFS_ERR << endl;
         flog << "===================" << endl;
@@ -130,7 +130,7 @@ void Manager::mDFS_R(string vertex)
     flog << "========DFS_R========" << endl;
 
     // Exceptions
-    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()) || vertex.find(' ') != vertex.npos)
     {
         flog << ErrorCode::DFS_R_ERR << endl;
         flog << "=====================" << endl;
@@ -142,12 +142,12 @@ void Manager::mDFS_R(string vertex)
     flog << "=====================" << endl;
 }
 
-void Manager::mKRUSKAL()
+void Manager::mKRUSKAL(string param)
 {
     flog << "========Kruskal========" << endl;
 
     // Exceptions
-    if (graph == nullptr)
+    if (graph == nullptr || !param.empty())
     {
         flog << ErrorCode::KRUSKAL_ERR << endl;
         flog << "=====================" << endl;
@@ -165,7 +165,7 @@ void Manager::mDIJKSTRA(string vertex)
     flog << "========Dijkstra========" << endl;
 
     // Exceptions
-    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()))
+    if (vertex.empty() || graph == nullptr || graph->getSize() <= atoi(vertex.c_str()) || vertex.find(' ') != vertex.npos)
     {
         flog << ErrorCode::DIJKSTRA_ERR << endl;
         flog << "========================" << endl;
