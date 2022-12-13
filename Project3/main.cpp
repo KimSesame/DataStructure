@@ -36,6 +36,8 @@ int main(void)
             manager.mDIJKSTRA(line);
         else if (command == "BELLMANFORD")
             manager.mBELLMANFORD(line);
+        else if (command == "FLOYD")
+            manager.mFLOYD(line);
         // // // // // // // // // //
     } while (command != "EXIT");
 

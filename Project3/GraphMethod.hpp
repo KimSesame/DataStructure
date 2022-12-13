@@ -268,8 +268,8 @@ bool Bellmanford(fstream &flog, Graph *graph, int start, int end)
                 path_table[edge.first.second] = edge.first.first;
             }
 
+    // Negative cycle exists if distance update
     for (auto edge : *edges)
-        // negative cycle exists if distance update
         if (distance[edge.first.second] > distance[edge.first.first] + edge.second)
             return false;
 
@@ -295,7 +295,53 @@ bool Bellmanford(fstream &flog, Graph *graph, int start, int end)
     return true;
 }
 
-// bool FLOYD(fstream& flog, Graph* graph)
-// {
+bool FLOYD(fstream &flog, Graph *graph)
+{
+    vector<pair<pair<int, int>, int>> *edges = graph->getEdges(1);
+    int **distance = new int *[graph->getSize()]; // distance array
+    for (int i = 0; i < graph->getSize(); i++)
+        distance[i] = new int[graph->getSize()];
 
-// }
+    // Init distacne
+    for (int i = 0; i < graph->getSize(); i++)
+        for (int j = 0; j < graph->getSize(); j++)
+            if (i == j)
+                distance[i][j] = 0;
+            else
+                distance[i][j] = MAX;
+
+    for (auto edge : *edges)
+        distance[edge.first.first][edge.first.second] = edge.second;
+
+    // Search
+    for (int k = 0; k < graph->getSize(); k++)
+        for (int i = 0; i < graph->getSize(); i++)
+            for (int j = 0; j < graph->getSize(); j++)
+                distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j]);
+
+    // Negatice cycle
+    for (int i = 0; i < graph->getSize(); i++)
+        if (distance[i][i] < 0)
+            return false;
+
+    // Print result
+    flog << '\t';
+    for (int i = 0; i < graph->getSize(); i++)
+    {
+        flog << "[" << i << "]" << '\t';
+    }
+    flog << endl;
+
+    for (int i = 0; i < graph->getSize(); i++)
+    {
+        flog << "[" << i << "]";
+        for (int j = 0; j < graph->getSize() && flog << '\t'; j++)
+            if (distance[i][j] == MAX)
+                flog << "x";
+            else
+                flog << distance[i][j];
+        flog << endl;
+    }
+
+    return true;
+}

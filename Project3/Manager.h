@@ -31,6 +31,7 @@ public:
     void mKRUSKAL(string param);
     void mDIJKSTRA(string vertex);
     void mBELLMANFORD(string params);
+    void mFLOYD(string line);
 
     // // // // // // // // 
 };

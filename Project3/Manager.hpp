@@ -202,4 +202,22 @@ void Manager::mBELLMANFORD(string params)
     flog << "============================" << endl;
 }
 
+void Manager::mFLOYD(string line)
+{
+    flog << "========FLOYD========" << endl;
+
+    // Exceptions
+    if (graph == nullptr || !line.empty())
+    {
+        flog << ErrorCode::FLOYD_ERR << endl;
+        flog << "=====================" << endl;
+        return;
+    }
+
+    if (!FLOYD(flog, graph))
+        flog << ErrorCode::FLOYD_ERR << endl;
+
+    flog << "=====================" << endl;
+}
+
 // // // // // // // // // // // // // // // // // // // //
