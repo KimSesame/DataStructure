@@ -245,12 +245,57 @@ bool Dijkstra(fstream &flog, Graph *graph, int vertex)
     return true;
 }
 
-// bool Bellmanford(Graph* graph, int s_vertex, int e_vertex)
-// {
+bool Bellmanford(fstream &flog, Graph *graph, int start, int end)
+{
+    vector<pair<pair<int, int>, int>> *edges = graph->getEdges(1);
+    vector<int> distance;
+    vector<int> path_table;
 
-// }
+    // Init tables
+    for (int i = 0; i < graph->getSize(); i++)
+        distance.push_back(MAX);
+    distance[start] = 0;
 
-// bool FLOYD(Graph* graph)
+    for (int i = 0; i < graph->getSize(); i++)
+        path_table.push_back(-1);
+
+    // Search
+    for (int i = 0; i < graph->getSize(); i++)
+        for (auto edge : *edges)
+            if (distance[edge.first.second] > distance[edge.first.first] + edge.second)
+            {
+                distance[edge.first.second] = distance[edge.first.first] + edge.second;
+                path_table[edge.first.second] = edge.first.first;
+            }
+
+    for (auto edge : *edges)
+        // negative cycle exists if distance update
+        if (distance[edge.first.second] > distance[edge.first.first] + edge.second)
+            return false;
+
+    // Set path
+    vector<int> rpath;
+    int cur = end;
+    while (path_table[cur] != -1)
+    {
+        rpath.push_back(cur);
+        cur = path_table[cur];
+    }
+    rpath.push_back(cur);
+
+    // Print path
+    auto riter = rpath.rbegin();
+
+    flog << *riter++;
+    for (; riter != rpath.rend(); riter++)
+        flog << " -> " << *riter;
+    flog << endl;
+    flog << "cost: " << distance[end] << endl;
+
+    return true;
+}
+
+// bool FLOYD(fstream& flog, Graph* graph)
 // {
 
 // }

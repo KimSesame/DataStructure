@@ -177,4 +177,29 @@ void Manager::mDIJKSTRA(string vertex)
     flog << "========================" << endl;
 }
 
+void Manager::mBELLMANFORD(string params)
+{
+    string v1, v2;
+
+    v1 = params.substr(0, params.find_first_of(' '));
+    params = params.erase(0, v1.size() + 1);
+    v2 = params;
+
+    flog << "========Bellman-Ford========" << endl;
+
+    // Exceptions
+    if (v1.empty() || v2.empty() || graph == nullptr || graph->getSize() <= max(atoi(v1.c_str()), atoi(v2.c_str())) ||
+        min(atoi(v1.c_str()), atoi(v2.c_str())) < 0 || params.find(' ') != params.npos)
+    {
+        flog << ErrorCode::BELLMANFORD_ERR << endl;
+        flog << "============================" << endl;
+        return;
+    }
+
+    if (!Bellmanford(flog, graph, atoi(v1.c_str()), atoi(v2.c_str())))
+        flog << ErrorCode::BELLMANFORD_ERR << endl;
+
+    flog << "============================" << endl;
+}
+
 // // // // // // // // // // // // // // // // // // // //

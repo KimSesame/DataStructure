@@ -34,6 +34,8 @@ int main(void)
             manager.mKRUSKAL(line);
         else if (command == "DIJKSTRA")
             manager.mDIJKSTRA(line);
+        else if (command == "BELLMANFORD")
+            manager.mBELLMANFORD(line);
         // // // // // // // // // //
     } while (command != "EXIT");
 

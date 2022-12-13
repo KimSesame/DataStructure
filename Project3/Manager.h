@@ -30,6 +30,7 @@ public:
     void mDFS_R(string vertex);
     void mKRUSKAL(string param);
     void mDIJKSTRA(string vertex);
+    void mBELLMANFORD(string params);
 
     // // // // // // // // 
 };

@@ -11,7 +11,7 @@ public:
 	~ListGraph();
 		
 	map<int, int>* getAdjacentEdges(int vertex, int direct = 0);
-	vector<pair<pair<int,int>,int>>* getEdges(void);
+	vector<pair<pair<int,int>,int>>* getEdges(int direct);
 	void insertEdge(int from, int to, int weight);
 	void printGraph(fstream& flog);
 };
