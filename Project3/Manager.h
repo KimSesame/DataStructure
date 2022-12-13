@@ -20,6 +20,7 @@ public:
 
     ~Manager()
     {
+        delete graph;
         flog.close();
     }
 
